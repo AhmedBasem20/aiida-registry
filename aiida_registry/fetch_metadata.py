@@ -13,6 +13,8 @@ import traceback
 import urllib
 from collections import OrderedDict
 from typing import Optional
+from datetime import datetime, timedelta
+import config
 
 import requests
 import yaml
@@ -47,6 +49,27 @@ def get_hosted_on(url):
 
     return netloc
 
+def get_github_commits_count(repo_url):
+    owner, repo = repo_url.split('/')[-2:]
+    url = f"https://api.github.com/repos/{owner}/{repo}/commits"
+    today = datetime.today().date()
+    last_three_months = today - timedelta(days=90)
+
+    TOKEN = config.GITHUB_TOKEN
+    headers = {
+        'Authorization': f'Bearer {TOKEN}',
+        'Accept': 'application/vnd.github+json'
+    }
+    params = {
+        "since": last_three_months.isoformat(),
+        "until": today.isoformat(),
+        "per_page": 100
+    }
+
+    response = requests.get(url, params=params, headers=headers)
+    commits_count = len(response.json())
+    return commits_count
+
 
 def complete_plugin_data(
     plugin_data: dict, fetch_pypi=True, fetch_pypi_wheel=True
@@ -65,11 +88,15 @@ def complete_plugin_data(
     REPORTER.info(f'{plugin_data["package_name"]}')
 
     plugin_data["hosted_on"] = get_hosted_on(plugin_data["code_home"])
+    commits_count = 0
+    if plugin_data["hosted_on"] == "github.com":
+        commits_count = get_github_commits_count(plugin_data["code_home"])
     plugin_data.update(
         {
             "metadata": {},
             "aiida_version": None,
             "entry_points": None,
+            "commits_count": commits_count
         }
     )
 
@@ -244,9 +271,10 @@ def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
         plugins_metadata[plugin_name] = complete_plugin_data(
             plugin_data, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_pypi_wheel
         )
+    plugins_metadata = dict(sorted(plugins_metadata.items(), key=lambda x: x[1]['commits_count'], reverse=True))
 
     with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
-        json.dump(plugins_metadata, handle, indent=2, sort_keys=True)
+        json.dump(plugins_metadata, handle, indent=2)
     REPORTER.info(f"{PLUGINS_METADATA} dumped")
 
     if os.environ.get("GITHUB_ACTIONS") == "true":
