@@ -14,7 +14,8 @@ import urllib
 from collections import OrderedDict
 from typing import Optional
 from datetime import datetime, timedelta
-import config
+import subprocess
+from .config import GITHUB_TOKEN
 
 import requests
 import yaml
@@ -55,7 +56,7 @@ def get_github_commits_count(repo_url):
     today = datetime.today().date()
     last_three_months = today - timedelta(days=90)
 
-    TOKEN = config.GITHUB_TOKEN
+    TOKEN = GITHUB_TOKEN
     headers = {
         'Authorization': f'Bearer {TOKEN}',
         'Accept': 'application/vnd.github+json'
@@ -70,6 +71,18 @@ def get_github_commits_count(repo_url):
     commits_count = len(response.json())
     return commits_count
 
+def install_repository(url):
+    if not os.path.exists("installed_plugins"):
+        os.makedirs("installed_plugins")
+    repo_name = url.split("/")[-1]
+    subprocess.run(["git","clone",url, f"installed_plugins/{repo_name}"])
+
+def get_git_commits_count(repo_name):
+
+    last_three_months = datetime.now() - timedelta(days=90)
+    git_command = f'git rev-list --count --since="{last_three_months}" --all'
+    commits_count = subprocess.check_output(git_command, cwd= f'./installed_plugins/{repo_name}').decode().strip()
+    return int(commits_count)
 
 def complete_plugin_data(
     plugin_data: dict, fetch_pypi=True, fetch_pypi_wheel=True
@@ -88,9 +101,13 @@ def complete_plugin_data(
     REPORTER.info(f'{plugin_data["package_name"]}')
 
     plugin_data["hosted_on"] = get_hosted_on(plugin_data["code_home"])
-    commits_count = 0
+
     if plugin_data["hosted_on"] == "github.com":
         commits_count = get_github_commits_count(plugin_data["code_home"])
+    else:
+        install_repository(plugin_data["code_home"])
+        commits_count = get_git_commits_count(plugin_data["name"])
+        
     plugin_data.update(
         {
             "metadata": {},
