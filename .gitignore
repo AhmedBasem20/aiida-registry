@@ -8,4 +8,3 @@
 *.sqlite
 out/
 plugins_metadata.json
-installed_plugins/

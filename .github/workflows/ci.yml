@@ -39,9 +39,7 @@ jobs:
       run: pip install -e . -v
     - name: fetch metadata
       id: fetch_metadata
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      run: aiida-registry fetch --token $GITHUB_TOKEN
+      run: aiida-registry fetch
     - name: make pages
       run: aiida-registry html
 
@@ -69,9 +67,7 @@ jobs:
     - name: Install
       run: pip install -e . -v
     - name: fetch metadata
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      run: aiida-registry fetch --token $GITHUB_TOKEN
+      run: aiida-registry fetch
 
 #     # See https://github.com/geerlingguy/raspberry-pi-dramble/issues/166
 #     - name: Force GitHub Actions' docker daemon to use vfs.
