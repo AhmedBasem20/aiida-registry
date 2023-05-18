@@ -15,7 +15,6 @@ from collections import OrderedDict
 from typing import Optional
 from datetime import datetime, timedelta
 import subprocess
-from .config import GITHUB_TOKEN
 
 import requests
 import yaml
@@ -50,15 +49,15 @@ def get_hosted_on(url):
 
     return netloc
 
-def get_github_commits_count(repo_url):
+def get_github_commits_count(repo_url, token):
     owner, repo = repo_url.split('/')[-2:]
     url = f"https://api.github.com/repos/{owner}/{repo}/commits"
     today = datetime.today().date()
     last_three_months = today - timedelta(days=90)
 
-    TOKEN = GITHUB_TOKEN
+    GITHUB_TOKEN = token
     headers = {
-        'Authorization': f'Bearer {TOKEN}',
+        'Authorization': f'Bearer {GITHUB_TOKEN}',
         'Accept': 'application/vnd.github+json'
     }
     params = {
@@ -85,7 +84,7 @@ def get_git_commits_count(repo_name):
     return int(commits_count)
 
 def complete_plugin_data(
-    plugin_data: dict, fetch_pypi=True, fetch_pypi_wheel=True
+    plugin_data: dict, token, fetch_pypi=True, fetch_pypi_wheel=True
 ):  # pylint: disable=too-many-branches,too-many-statements
     """Update plugin data dictionary.
 
@@ -103,7 +102,7 @@ def complete_plugin_data(
     plugin_data["hosted_on"] = get_hosted_on(plugin_data["code_home"])
 
     if plugin_data["hosted_on"] == "github.com":
-        commits_count = get_github_commits_count(plugin_data["code_home"])
+        commits_count = get_github_commits_count(plugin_data["code_home"], token)
     else:
         install_repository(plugin_data["code_home"])
         commits_count = get_git_commits_count(plugin_data["name"])
@@ -273,7 +272,7 @@ def is_pip_url_pypi(string: str) -> bool:
     return PYPI_NAME_RE.match(string) is not None
 
 
-def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
+def fetch_metadata(token, filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
     """Fetch metadata from PyPI and AiiDA-Plugins."""
     with open(PLUGINS_FILE_ABS, encoding="utf8") as handle:
         plugins_raw_data: dict = yaml.safe_load(handle)
@@ -286,7 +285,7 @@ def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
         REPORTER.set_plugin_name(plugin_name)
         plugin_data["name"] = plugin_name
         plugins_metadata[plugin_name] = complete_plugin_data(
-            plugin_data, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_pypi_wheel
+            plugin_data, token, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_pypi_wheel
         )
     plugins_metadata = dict(sorted(plugins_metadata.items(), key=lambda x: x[1]['commits_count'], reverse=True))
 
