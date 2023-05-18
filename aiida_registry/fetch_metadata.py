@@ -79,7 +79,7 @@ def install_repository(url):
 def get_git_commits_count(repo_name):
 
     last_three_months = datetime.now() - timedelta(days=90)
-    git_command = f'git rev-list --count --since="{last_three_months}" --all'
+    git_command = ['git', 'rev-list', '--count', f'--since="{last_three_months}"', '--all']
     commits_count = subprocess.check_output(git_command, cwd= f'./installed_plugins/{repo_name}').decode().strip()
     return int(commits_count)
 
