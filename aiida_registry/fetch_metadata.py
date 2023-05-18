@@ -54,8 +54,8 @@ def get_github_commits_count(repo_url, token):
     url = f"https://api.github.com/repos/{owner}/{repo}/commits"
     today = datetime.today().date()
     last_three_months = today - timedelta(days=90)
-
     GITHUB_TOKEN = token
+    
     headers = {
         'Authorization': f'Bearer {GITHUB_TOKEN}',
         'Accept': 'application/vnd.github+json'
