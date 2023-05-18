@@ -13,7 +13,7 @@ def cli():
 def fetch(package, fetch_pypi, fetch_wheel, token):
     print("TEST GITHUB ACTIONS")
     from aiida_registry.fetch_metadata import fetch_metadata
-    fetch_metadata([package] if package else None, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_wheel, token=token)
+    fetch_metadata(token, [package] if package else None, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_wheel)
 
 @cli.command()
 def html():
