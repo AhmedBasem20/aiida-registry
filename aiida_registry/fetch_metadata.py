@@ -13,6 +13,8 @@ import traceback
 import urllib
 from collections import OrderedDict
 from typing import Optional
+from datetime import datetime, timedelta
+import subprocess
 
 import requests
 import yaml
@@ -47,9 +49,42 @@ def get_hosted_on(url):
 
     return netloc
 
+def get_github_commits_count(repo_url, token):
+    owner, repo = repo_url.split('/')[-2:]
+    url = f"https://api.github.com/repos/{owner}/{repo}/commits"
+    today = datetime.today().date()
+    last_three_months = today - timedelta(days=90)
+    GITHUB_TOKEN = token
+    
+    headers = {
+        'Authorization': f'Bearer {GITHUB_TOKEN}',
+        'Accept': 'application/vnd.github+json'
+    }
+    params = {
+        "since": last_three_months.isoformat(),
+        "until": today.isoformat(),
+        "per_page": 100
+    }
+
+    response = requests.get(url, params=params, headers=headers)
+    commits_count = len(response.json())
+    return commits_count
+
+def install_repository(url):
+    if not os.path.exists("installed_plugins"):
+        os.makedirs("installed_plugins")
+    repo_name = url.split("/")[-1]
+    subprocess.run(["git","clone",url, f"installed_plugins/{repo_name}"])
+
+def get_git_commits_count(repo_name):
+
+    last_three_months = datetime.now() - timedelta(days=90)
+    git_command = ['git', 'rev-list', '--count', f'--since="{last_three_months}"', '--all']
+    commits_count = subprocess.check_output(git_command, cwd= f'./installed_plugins/{repo_name}').decode().strip()
+    return int(commits_count)
 
 def complete_plugin_data(
-    plugin_data: dict, fetch_pypi=True, fetch_pypi_wheel=True
+    plugin_data: dict, token, fetch_pypi=True, fetch_pypi_wheel=True
 ):  # pylint: disable=too-many-branches,too-many-statements
     """Update plugin data dictionary.
 
@@ -65,11 +100,19 @@ def complete_plugin_data(
     REPORTER.info(f'{plugin_data["package_name"]}')
 
     plugin_data["hosted_on"] = get_hosted_on(plugin_data["code_home"])
+
+    if plugin_data["hosted_on"] == "github.com":
+        commits_count = get_github_commits_count(plugin_data["code_home"], token)
+    else:
+        install_repository(plugin_data["code_home"])
+        commits_count = get_git_commits_count(plugin_data["name"])
+        
     plugin_data.update(
         {
             "metadata": {},
             "aiida_version": None,
             "entry_points": None,
+            "commits_count": commits_count
         }
     )
 
@@ -229,7 +272,7 @@ def is_pip_url_pypi(string: str) -> bool:
     return PYPI_NAME_RE.match(string) is not None
 
 
-def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
+def fetch_metadata(token, filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
     """Fetch metadata from PyPI and AiiDA-Plugins."""
     with open(PLUGINS_FILE_ABS, encoding="utf8") as handle:
         plugins_raw_data: dict = yaml.safe_load(handle)
@@ -242,11 +285,12 @@ def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
         REPORTER.set_plugin_name(plugin_name)
         plugin_data["name"] = plugin_name
         plugins_metadata[plugin_name] = complete_plugin_data(
-            plugin_data, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_pypi_wheel
+            plugin_data, token, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_pypi_wheel
         )
+    plugins_metadata = dict(sorted(plugins_metadata.items(), key=lambda x: x[1]['commits_count'], reverse=True))
 
     with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
-        json.dump(plugins_metadata, handle, indent=2, sort_keys=True)
+        json.dump(plugins_metadata, handle, indent=2)
     REPORTER.info(f"{PLUGINS_METADATA} dumped")
 
     if os.environ.get("GITHUB_ACTIONS") == "true":
