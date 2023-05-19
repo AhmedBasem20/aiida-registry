@@ -218,9 +218,11 @@ def get_all_data(container_image):
         result_dict = test_install_one_docker(container_image, plugin)
         process_metadata = result_dict["process_metadata"]
         if process_metadata is not None:
-                if "aiida.calculations" in list(process_metadata.keys()):
+                try:                
                     for _k, calculation in process_metadata["aiida.calculations"].items():
                         data[plugin["name"]]["entry_points"]["aiida.calculations"][_k] = calculation
+                except KeyError:
+                    continue
 
             
 
