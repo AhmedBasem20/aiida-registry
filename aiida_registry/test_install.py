@@ -193,8 +193,9 @@ def get_all_data(container_image):
     i = 0
     for _k, plugin in data.items():
         print(" - {}".format(plugin["name"]))
+        print(_k)
         i+=1
-        if i > 20:
+        if i > 6:
             break
 
         # this currently checks for the wrong python version
@@ -219,10 +220,10 @@ def get_all_data(container_image):
         process_metadata = result_dict["process_metadata"]
         if process_metadata is not None:
                 try:                
-                    for _key, calculation in process_metadata["aiida.calculations"].items():
+                    for key, calculation in process_metadata["aiida.calculations"].items():
                         print(plugin["name"])
-                        print(_key)
-                        print(data[plugin["name"]]["entry_points"]["aiida.calculations"][_key])
+                        print(key)
+                        print(data[plugin["name"]]["entry_points"]["aiida.calculations"][key])
                         print(calculation)
                 except KeyError:
                     continue
