@@ -220,7 +220,10 @@ def get_all_data(container_image):
         if process_metadata is not None:
                 try:                
                     for _k, calculation in process_metadata["aiida.calculations"].items():
-                        data[plugin["name"]]["entry_points"]["aiida.calculations"][_k] = calculation
+                        print(plugin["name"])
+                        print(_k)
+                        print(data[plugin["name"]]["entry_points"]["aiida.calculations"][_k])
+                        print(calculation)
                 except KeyError:
                     continue
 
@@ -232,4 +235,3 @@ def get_all_data(container_image):
         json.dump(test_results, handle, indent=2)
     
     json_str = json.dumps(data, indent=2)
-    print(json_str)
