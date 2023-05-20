@@ -193,7 +193,6 @@ def get_all_data(container_image):
     i = 0
     for _k, plugin in data.items():
         print(" - {}".format(plugin["name"]))
-        print(_k)
         i+=1
         if i > 6:
             break
@@ -218,13 +217,11 @@ def get_all_data(container_image):
 
         result_dict = test_install_one_docker(container_image, plugin)
         process_metadata = result_dict["process_metadata"]
+        print(process_metadata)
         if process_metadata is not None:
                 try:                
-                    for key, calculation in process_metadata["aiida.calculations"].items():
-                        print(plugin["name"])
-                        print(key)
-                        print(data[plugin["name"]]["entry_points"]["aiida.calculations"][key])
-                        print(calculation)
+                    for k, calculation in process_metadata["aiida.calculations"].items():
+                        data[plugin["name"]]["entry_points"]["aiida.calculations"][k] = calculation
                 except KeyError:
                     continue
 
@@ -236,3 +233,4 @@ def get_all_data(container_image):
         json.dump(test_results, handle, indent=2)
     
     json_str = json.dumps(data, indent=2)
+    print(json_str)
