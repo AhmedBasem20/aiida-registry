@@ -219,10 +219,10 @@ def get_all_data(container_image):
         process_metadata = result_dict["process_metadata"]
         if process_metadata is not None:
                 try:                
-                    for _k, calculation in process_metadata["aiida.calculations"].items():
+                    for _key, calculation in process_metadata["aiida.calculations"].items():
                         print(plugin["name"])
-                        print(_k)
-                        print(data[plugin["name"]]["entry_points"]["aiida.calculations"][_k])
+                        print(_key)
+                        print(data[plugin["name"]]["entry_points"]["aiida.calculations"][_key])
                         print(calculation)
                 except KeyError:
                     continue
