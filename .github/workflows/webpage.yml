@@ -45,7 +45,7 @@ jobs:
         git config --local user.name "GitHub Actions"
         git add test_results.json
         git commit -m "Add test results"
-        git push origin HEAD:entrypoints-info
+        git push -f origin HEAD:entrypoints-info
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
