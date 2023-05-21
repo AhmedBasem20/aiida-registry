@@ -217,7 +217,7 @@ def get_all_data(container_image):
 
         result_dict = test_install_one_docker(container_image, plugin)
         process_metadata = result_dict["process_metadata"]
-        print(json.dumps(process_metadata, indent=4))
+        #print(json.dumps(process_metadata, indent=4))
         if process_metadata is not None:
                 try:                
                     for k, calculation in process_metadata["aiida.calculations"].items():
@@ -230,7 +230,7 @@ def get_all_data(container_image):
 
     print(f"Dumping {PLUGINS_TEST_RESULTS}")
     with open(PLUGINS_TEST_RESULTS, "w", encoding="utf8") as handle:
-        json.dump(test_results, handle, indent=2)
-    
+        json.dump(test_results, handle, indent=4)
+    print(test_results)    
     json_str = json.dumps(data, indent=2)
-    print(json_str)
+    #print(json_str)
