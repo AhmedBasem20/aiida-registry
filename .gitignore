@@ -7,4 +7,4 @@
 *.egg-info
 *.sqlite
 out/
-plugins_metadata.json
+my-react-app/package-lock.json
