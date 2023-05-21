@@ -215,15 +215,15 @@ def get_all_data(container_image):
                 print("    >> SKIPPING: No pip_url key provided")
             continue
 
-        result_dict = test_install_one_docker(container_image, plugin)
-        process_metadata = result_dict["process_metadata"]
+        test_results.append(test_install_one_docker(container_image, plugin))
+        #process_metadata = result_dict["process_metadata"]
         #print(json.dumps(process_metadata, indent=4))
-        if process_metadata is not None:
-                try:                
-                    for k, calculation in process_metadata["aiida.calculations"].items():
-                        data[plugin["name"]]["entry_points"]["aiida.calculations"][k] = calculation
-                except KeyError:
-                    continue
+        # if process_metadata is not None:
+        #         try:                
+        #             for k, calculation in process_metadata["aiida.calculations"].items():
+        #                 data[plugin["name"]]["entry_points"]["aiida.calculations"][k] = calculation
+        #         except KeyError:
+        #             continue
 
             
 
