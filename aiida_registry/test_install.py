@@ -194,7 +194,7 @@ def get_all_data(container_image):
     for _k, plugin in data.items():
         print(" - {}".format(plugin["name"]))
         i+=1
-        if i > 8:
+        if i > 2:
             break
 
         # this currently checks for the wrong python version
