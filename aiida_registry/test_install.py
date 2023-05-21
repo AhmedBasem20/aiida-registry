@@ -194,7 +194,7 @@ def get_all_data(container_image):
     for _k, plugin in data.items():
         print(" - {}".format(plugin["name"]))
         i+=1
-        if i > 6:
+        if i > 8:
             break
 
         # this currently checks for the wrong python version
@@ -217,7 +217,7 @@ def get_all_data(container_image):
 
         result_dict = test_install_one_docker(container_image, plugin)
         process_metadata = result_dict["process_metadata"]
-        print(process_metadata)
+        print(json.dumps(process_metadata, indent=4))
         if process_metadata is not None:
                 try:                
                     for k, calculation in process_metadata["aiida.calculations"].items():
