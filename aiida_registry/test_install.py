@@ -231,6 +231,6 @@ def get_all_data(container_image):
     print(f"Dumping {PLUGINS_TEST_RESULTS}")
     with open(PLUGINS_TEST_RESULTS, "w", encoding="utf8") as handle:
         json.dump(test_results, handle, indent=4)
-    print(json.dump(test_results, handle, indent=4))    
+    print(json.dump(test_results, indent=4))    
     json_str = json.dumps(data, indent=2)
     #print(json_str)
