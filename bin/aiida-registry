@@ -22,8 +22,8 @@ def html():
 @cli.command()
 @click.option('--container-image', default='aiidateam/aiida-core:latest', help='Container image to use for the install')
 def test_install(container_image):
-    from aiida_registry.test_install import get_all_data
-    get_all_data(container_image)
+    from aiida_registry.test_install import test_install_all
+    test_install_all(container_image)
 
 
 if __name__ == '__main__':
