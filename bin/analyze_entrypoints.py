@@ -47,23 +47,21 @@ class ProcessInfo:
     spec: ProcessSpec
 
 
-def document_entry_point_group(entry_point_group) -> Dict[str, ProcessInfo]:
+def document_entry_point_group(entry_point_group, entrypoints) -> Dict[str, ProcessInfo]:
     """Extract metadata for each entry point in a group.
 
     :param entry_point_group: the entry point group
+    :param entrypoints: the plugin entrypoints
     :return: a dictionary with the entry point name as key and the entry point metadata as value
     """
-    from aiida.plugins.entry_point import (  # pylint: disable=import-error
-        get_entry_point_names,
-    )
-
-    entry_points = get_entry_point_names(entry_point_group)
-
-    if not entry_points:
-        return {}
+    workflow_calculations_entrypoints = []
+    for ep_group, ep in entrypoints.items():
+        if ep_group in ENTRY_POINT_GROUPS:
+            for key, val in ep.items():
+                workflow_calculations_entrypoints.append(key)
 
     groups_dict = {}
-    for entry_point in entry_points:
+    for entry_point in workflow_calculations_entrypoints:
         process_info = document_entry_point(entry_point_group, entry_point)
         if process_info is not None:
             groups_dict[entry_point] = asdict(process_info)
@@ -172,11 +170,15 @@ def document_process_spec(process_spec):
 
 @click.command()
 @click.option("--output", "-o", type=str, default=None, help="Output file")
-def cli(output):
+@click.option("--entrypoints", "-e", type=str, help="Plugin entry points")
+def cli(output, entrypoints):
     """Fetch information about plugins and print it in a human-readable format."""
     result = {}
+    import ast
+    entrypoints = entrypoints.replace('"', "'")
+    entrypoints = ast.literal_eval(entrypoints)
     for ep_group in ENTRY_POINT_GROUPS:
-        result[ep_group] = document_entry_point_group(ep_group)
+        result[ep_group] = document_entry_point_group(ep_group, entrypoints)
 
     if output is None:
         print(result)

@@ -251,4 +251,3 @@ def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
 
     if os.environ.get("GITHUB_ACTIONS") == "true":
         print("::set-output name=error::" + "%0A".join(REPORTER.warnings))
-        

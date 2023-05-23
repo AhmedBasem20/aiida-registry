@@ -83,6 +83,7 @@ def test_install_one_docker(container_image, plugin):
     is_package_importable = False
     process_metadata = {}
     error_message = ""
+    entrypoints = json.dumps(plugin["entry_points"])
 
     print("   - Starting container for {}".format(plugin["name"]))
     container = client.containers.run(
@@ -123,7 +124,7 @@ def test_install_one_docker(container_image, plugin):
         )
         extract_metadata = container.exec_run(
             workdir=_DOCKER_WORKDIR,
-            cmd="python ./bin/analyze_entrypoints.py -o result.json",
+            cmd=f"python ./bin/analyze_entrypoints.py -o result.json -e '{entrypoints}'",
         )
         error_message = handle_error(
             extract_metadata,
