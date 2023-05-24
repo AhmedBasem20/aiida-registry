@@ -222,9 +222,12 @@ def get_all_data(container_image):
         results = test_install_one_docker(container_image, plugin)
         process_metadata = results["process_metadata"]
         for ep_group in ENTRY_POINT_GROUPS:
-            if process_metadata[ep_group]:
-                for key, value in data[_k]["entry_points"][ep_group].items():
-                    data[_k]["entry_points"][ep_group] = process_metadata[ep_group][key]
+            try:
+                if process_metadata[ep_group]:
+                    for key, value in data[_k]["entry_points"][ep_group].items():
+                        data[_k]["entry_points"][ep_group] = process_metadata[ep_group][key]
+            except KeyError:
+                continue
     print(f"Dumping {PLUGINS_TEST_RESULTS}")
     with open(PLUGINS_TEST_RESULTS, "w", encoding="utf8") as handle:
         json.dump(data, handle, indent=2)
