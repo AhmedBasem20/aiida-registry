@@ -183,3 +183,44 @@ def test_install_all(container_image):
     print(f"Dumping {PLUGINS_TEST_RESULTS}")
     with open(PLUGINS_TEST_RESULTS, "w", encoding="utf8") as handle:
         json.dump(test_results, handle, indent=2)
+
+def get_all_data(container_image):
+    with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
+        data = json.load(handle)
+
+    test_results = []
+    i = 0
+    print("[test installing plugins]")
+    for _k, plugin in data.items():
+        print(" - {}".format(plugin["name"]))
+        i+=1
+        if i > 6:
+            break
+
+        # this currently checks for the wrong python version
+        # if not supports_python_version(plugin):
+        #    continue
+
+        # 'planning' plugins aren't installed/tested
+        if plugin["development_status"] in ["planning"]:
+            print("    >> SKIPPING: plugin at planning state")
+            continue
+
+        if "pip_url" not in list(plugin.keys()):
+            if plugin["development_status"] not in ["planning", "pre-alpha", "alpha"]:
+                print(
+                    f"    >> WARNING: pip_url key missing, despite required for {plugin['development_status']} stage !"
+                )
+            else:
+                print("    >> SKIPPING: No pip_url key provided")
+            continue
+
+        results = test_install_one_docker(container_image, plugin)
+        process_metadata = results["process_metadata"]
+        if process_metadata["aiida.calculations"]:
+            for key, value in data[_k]["entry_points"]["aiida.calculations"].items():
+                data[_k]["entry_points"]["aiida.calculations"] = process_metadata["aiida.calculation"][key]
+    print(f"Dumping {PLUGINS_TEST_RESULTS}")
+    with open(PLUGINS_TEST_RESULTS, "w", encoding="utf8") as handle:
+        json.dump(data, handle, indent=2)
+    print(json.dumps(data, indent=4))
