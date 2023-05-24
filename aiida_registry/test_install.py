@@ -225,7 +225,7 @@ def get_all_data(container_image):
             try:
                 if process_metadata[ep_group]:
                     for key, value in data[_k]["entry_points"][ep_group].items():
-                        data[_k]["entry_points"][ep_group] = process_metadata[ep_group][key]
+                        data[_k]["entry_points"][ep_group][key] = process_metadata[ep_group][key]
             except KeyError:
                 continue
     print(f"Dumping {PLUGINS_TEST_RESULTS}")
