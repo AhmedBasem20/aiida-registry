@@ -4,6 +4,8 @@ import { Link, Route, Routes } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Logo from './assets/logo-white-text.svg'
 import './App.css'
+import { readFileSync } from 'fs';
+const jsonData = JSON.parse(readFileSync(new URL('./plugins_metadata.json', import.meta.url), 'utf8'));
 
 function App() {
 
