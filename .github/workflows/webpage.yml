@@ -44,6 +44,7 @@ jobs:
         git add my-react-app/src/plugins_metadata.json
         git commit -m "Add plugins data"
         git push -f origin HEAD:reactjs
+        git push -f origin HEAD:gh-pages
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
