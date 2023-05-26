@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import jsonData from './plugins_metadata.json';
 import { Link, Route, Routes } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Logo from './assets/logo-white-text.svg'
