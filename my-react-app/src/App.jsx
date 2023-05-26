@@ -1,10 +1,18 @@
 import { useState } from 'react';
+import jsonData from './plugins_metadata.json';
 import { Link, Route, Routes } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Logo from './assets/logo-white-text.svg'
 import './App.css'
-import { readFileSync } from 'fs';
-const jsonData = JSON.parse(readFileSync(new URL('./plugins_metadata.json', import.meta.url), 'utf8'));
+let jsonData;
+fetch('./plugins_metadata.json')
+  .then(response => response.json())
+  .then(data => {
+    jsonData = data; 
+  })
+  .catch(error => {
+    console.error('Error fetching JSON:', error);
+  });
 
 function App() {
 
