@@ -137,30 +137,7 @@ def test_install_one_docker(container_image, plugin):
         with open("result.json", "r", encoding="utf8") as handle:
             process_metadata = json.load(handle)
 
-        #Delete entry points that doesn't belong to the plugin
-        workflow_calculations_entrypoints = []
-        for ep_group, ep in entrypoints.items():
-            if ep_group in ENTRY_POINT_GROUPS:
-                for key, val in ep.items():
-                    workflow_calculations_entrypoints.append(key)
-
-        keys_to_delete = []
-        for ep_group in ENTRY_POINT_GROUPS:
-            try:
-                for key, val in process_metadata[ep_group].items():
-                    if key not in workflow_calculations_entrypoints:
-                        keys_to_delete.append(key)
-                    else:
-                        process_metadata[ep_group][key]["class"] = entrypoints[ep_group][key]
-            except KeyError:
-                continue
-
-        for ep_group in ENTRY_POINT_GROUPS:
-            for key in keys_to_delete:
-                try:
-                    del process_metadata[ep_group][key]
-                except KeyError:
-                    continue
+        process_metadata = filter_entry_points(process_metadata, entrypoints)
 
     except ValueError as exc:
         print(f"   >> ERROR: {str(exc)}")
@@ -177,18 +154,45 @@ def test_install_one_docker(container_image, plugin):
         )
     )
 
+def filter_entry_points(process_metadata, entrypoints):
+    """
+    Extract entry points that belongs to the plugin,
+    and delete any other entry points.
+    """
+
+    workflow_calculations_entrypoints = []
+    keys_to_delete = []
+    for ep_group, ep in entrypoints.items():
+        if ep_group in ENTRY_POINT_GROUPS:
+            for key, val in ep.items():
+                workflow_calculations_entrypoints.append(key)
+
+    for ep_group in ENTRY_POINT_GROUPS:
+        try:
+            for key, val in process_metadata[ep_group].items():
+                if key not in workflow_calculations_entrypoints:
+                    keys_to_delete.append(key)
+                else:
+                    process_metadata[ep_group][key]["class"] = entrypoints[ep_group][key]
+        except KeyError:
+            continue
+
+    for ep_group in ENTRY_POINT_GROUPS:
+        for key in keys_to_delete:
+            try:
+                del process_metadata[ep_group][key]
+            except KeyError:
+                continue
+    return process_metadata
 
 def test_install_all(container_image):
     with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
         data = json.load(handle)
 
-    i = 0
     print("[test installing plugins]")
     for _k, plugin in data.items():
         print(" - {}".format(plugin["name"]))
-        i+=1
-        if i == 4:
-            break
+
 
         # this currently checks for the wrong python version
         # if not supports_python_version(plugin):
