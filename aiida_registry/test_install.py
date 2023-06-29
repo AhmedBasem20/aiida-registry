@@ -146,7 +146,7 @@ def test_install_one_docker(container_image, plugin):
 
         for ep_group in ENTRY_POINT_GROUPS:
             try:
-                for key, val in process_metadata[ep_group]:
+                for key, val in process_metadata[ep_group].items():
                     if key not in workflow_calculations_entrypoints:
                         del process_metadata[ep_group][key]
                     else:
