@@ -157,7 +157,10 @@ def test_install_one_docker(container_image, plugin):
 
         for ep_group in ENTRY_POINT_GROUPS:
             for key in keys_to_delete:
-                del process_metadata[ep_group][key]
+                try:
+                    del process_metadata[ep_group][key]
+                except KeyError:
+                    continue
 
     except ValueError as exc:
         print(f"   >> ERROR: {str(exc)}")
