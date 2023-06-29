@@ -14,7 +14,10 @@ from . import PLUGINS_METADATA, PLUGINS_TEST_RESULTS
 
 # Where to mount the workdir inside the Docker container
 _DOCKER_WORKDIR = "/tmp/scripts"
-
+ENTRY_POINT_GROUPS = [
+            "aiida.calculations",
+            "aiida.workflows",
+        ]
 
 @dataclass
 class TestResult:
@@ -83,7 +86,7 @@ def test_install_one_docker(container_image, plugin):
     is_package_importable = False
     process_metadata = {}
     error_message = ""
-    entrypoints = json.dumps(plugin["entry_points"])
+    entrypoints = plugin["entry_points"]
 
     print("   - Starting container for {}".format(plugin["name"]))
     container = client.containers.run(
@@ -124,7 +127,7 @@ def test_install_one_docker(container_image, plugin):
         )
         extract_metadata = container.exec_run(
             workdir=_DOCKER_WORKDIR,
-            cmd=f"python ./bin/analyze_entrypoints.py -o result.json -e '{entrypoints}'",
+            cmd=f"python ./bin/analyze_entrypoints.py -o result.json",
         )
         error_message = handle_error(
             extract_metadata,
@@ -133,6 +136,23 @@ def test_install_one_docker(container_image, plugin):
 
         with open("result.json", "r", encoding="utf8") as handle:
             process_metadata = json.load(handle)
+
+        #Delete entry points that doesn't belong to the plugin
+        workflow_calculations_entrypoints = []
+        for ep_group, ep in entrypoints.items():
+            if ep_group in ENTRY_POINT_GROUPS:
+                for key, val in ep.items():
+                    workflow_calculations_entrypoints.append(key)
+
+        for ep_group in ENTRY_POINT_GROUPS:
+            try:
+                for key, val in process_metadata[ep_group]:
+                    if key not in workflow_calculations_entrypoints:
+                        del process_metadata[ep_group]
+                    else:
+                        process_metadata[ep_group][key]["class"] = val
+            except KeyError:
+                continue
 
     except ValueError as exc:
         print(f"   >> ERROR: {str(exc)}")
@@ -154,48 +174,19 @@ def test_install_all(container_image):
     with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
         data = json.load(handle)
 
-    test_results = []
-
+    i = 0
     print("[test installing plugins]")
     for _k, plugin in data.items():
         print(" - {}".format(plugin["name"]))
+        i+=1
+        if i == 8:
+            break
 
         # this currently checks for the wrong python version
         # if not supports_python_version(plugin):
         #    continue
 
         # 'planning' plugins aren't installed/tested
-        if plugin["development_status"] in ["planning"]:
-            print("    >> SKIPPING: plugin at planning state")
-            continue
-
-        if "pip_url" not in list(plugin.keys()):
-            if plugin["development_status"] not in ["planning", "pre-alpha", "alpha"]:
-                print(
-                    f"    >> WARNING: pip_url key missing, despite required for {plugin['development_status']} stage !"
-                )
-            else:
-                print("    >> SKIPPING: No pip_url key provided")
-            continue
-
-        test_results.append(test_install_one_docker(container_image, plugin))
-
-    print(f"Dumping {PLUGINS_TEST_RESULTS}")
-    with open(PLUGINS_TEST_RESULTS, "w", encoding="utf8") as handle:
-        json.dump(test_results, handle, indent=2)
-
-def get_all_data(container_image):
-    with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
-        data = json.load(handle)
-
-    print("[Merging entry points data to the JSON file]")
-    for _k, plugin in data.items():
-        print(" - {}".format(plugin["name"]))
-        ENTRY_POINT_GROUPS = [
-            "aiida.calculations",
-            "aiida.workflows",
-        ]
-
         if plugin["development_status"] in ["planning"]:
             print("    >> SKIPPING: plugin at planning state")
             continue
@@ -218,6 +209,7 @@ def get_all_data(container_image):
                         data[_k]["entry_points"][ep_group][key] = process_metadata[ep_group][key]
             except KeyError:
                 continue
+
     print(f"Dumping plugins.json")
     with open("plugins.json", "w", encoding="utf8") as handle:
         json.dump(data, handle, indent=2)

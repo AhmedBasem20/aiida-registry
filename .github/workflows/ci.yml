@@ -82,8 +82,6 @@ jobs:
 
     - name: Try installing packages
       run: aiida-registry test-install
-    - name: Generate entrypoints data
-      run: aiida-registry get_all_data
 
   unit-tests:
     runs-on: ubuntu-latest
