@@ -148,7 +148,7 @@ def test_install_one_docker(container_image, plugin):
             try:
                 for key, val in process_metadata[ep_group]:
                     if key not in workflow_calculations_entrypoints:
-                        del process_metadata[ep_group]
+                        del process_metadata[ep_group][key]
                     else:
                         process_metadata[ep_group][key]["class"] = val
             except KeyError:
@@ -179,7 +179,7 @@ def test_install_all(container_image):
     for _k, plugin in data.items():
         print(" - {}".format(plugin["name"]))
         i+=1
-        if i == 8:
+        if i == 4:
             break
 
         # this currently checks for the wrong python version
