@@ -144,15 +144,19 @@ def test_install_one_docker(container_image, plugin):
                 for key, val in ep.items():
                     workflow_calculations_entrypoints.append(key)
 
+        keys_to_delete = []
         for ep_group in ENTRY_POINT_GROUPS:
             try:
                 for key, val in process_metadata[ep_group].items():
                     if key not in workflow_calculations_entrypoints:
-                        del process_metadata[ep_group][key]
+                        keys_to_delete.append(key)
                     else:
-                        process_metadata[ep_group][key]["class"] = val
+                        process_metadata[ep_group][key]["class"] = entrypoints[ep_group][key]
             except KeyError:
                 continue
+
+        for key in keys_to_delete:
+            del process_metadata[ep_group][key]
 
     except ValueError as exc:
         print(f"   >> ERROR: {str(exc)}")
