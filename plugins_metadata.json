@@ -1054,7 +1054,7 @@
           "cp2k.base": "aiida_cp2k.workchains:Cp2kBaseWorkChain"
         }
       },
-      "commits_count": 14,
+      "commits_count": 15,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -1711,7 +1711,7 @@
           "aiida-firecrest-cli": "aiida_firecrest.cli:main"
         }
       },
-      "commits_count": 0,
+      "commits_count": 14,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -1846,7 +1846,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 276,
+      "commits_count": 257,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -2413,7 +2413,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 167,
+      "commits_count": 158,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -2735,7 +2735,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 32,
+      "commits_count": 31,
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/nanotech-empa/aiida-nanotech-empa"
     },
@@ -2841,7 +2841,7 @@
           "quantumespresso.ocv.ocvwc": "aiida_open_circuit_voltage.workflows.workchain:OCVWorkChain"
         }
       },
-      "commits_count": 37,
+      "commits_count": 33,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -4604,7 +4604,7 @@
           "yambo.yambo": "aiida_yambo.parsers.parsers:YamboParser"
         }
       },
-      "commits_count": 68,
+      "commits_count": 66,
       "summaryinfo": [
         {
           "colorclass": "blue",
