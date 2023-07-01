@@ -165,9 +165,12 @@ def filter_entry_points(process_metadata, entrypoints):
 
     for ep_group in ENTRY_POINT_GROUPS:
         filtered_metadata[ep_group] = {}
-        for entry_point in entrypoints[ep_group].keys():
-            filtered_metadata[ep_group][entry_point] = process_metadata[ep_group][entry_point]
-            filtered_metadata[ep_group][entry_point]["class"] = entrypoints[ep_group][entry_point]
+        try:
+            for entry_point in entrypoints[ep_group].keys():
+                filtered_metadata[ep_group][entry_point] = process_metadata[ep_group][entry_point]
+                filtered_metadata[ep_group][entry_point]["class"] = entrypoints[ep_group][entry_point]
+        except KeyError:
+            continue
 
     return filtered_metadata
 
