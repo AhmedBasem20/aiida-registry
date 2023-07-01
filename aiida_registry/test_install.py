@@ -164,15 +164,10 @@ def filter_entry_points(process_metadata, entrypoints):
     filtered_metadata = {}
 
     for ep_group in ENTRY_POINT_GROUPS:
-        try:
-            for key, _ in process_metadata[ep_group].items():
-                if key in entrypoints[ep_group]:
-                    filtered_metadata[ep_group][key] = process_metadata[ep_group][key]
-                    filtered_metadata[ep_group][key]["class"] = entrypoints[ep_group][
-                        key
-                    ]
-        except KeyError:
-            continue
+        filtered_metadata[ep_group] = {}
+        for entry_point in entrypoints[ep_group].keys():
+            filtered_metadata[ep_group][entry_point] = process_metadata[ep_group][entry_point]
+            filtered_metadata[ep_group][entry_point]["class"] = entrypoints[ep_group][entry_point]
 
     return filtered_metadata
 
@@ -180,10 +175,10 @@ def filter_entry_points(process_metadata, entrypoints):
 def test_install_all(container_image):
     with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
         data = json.load(handle)
-    i=0
+    i = 0
     print("[test installing plugins]")
     for plugin_name, plugin in data.items():
-        i+=1
+        i += 1
         if i == 4:
             break
         print(" - {}".format(plugin["name"]))
