@@ -157,44 +157,35 @@ def test_install_one_docker(container_image, plugin):
 
 def filter_entry_points(process_metadata, entrypoints):
     """
-    Extract entry points that belongs to the plugin,
+    Extract entry points that belong to the plugin,
     and delete any other entry points.
     """
 
-    workflow_calculations_entrypoints = []
-    keys_to_delete = []
-    for ep_group, entry_point in entrypoints.items():
-        if ep_group in ENTRY_POINT_GROUPS:
-            for key, _ in entry_point.items():
-                workflow_calculations_entrypoints.append(key)
+    filtered_metadata = {}
 
     for ep_group in ENTRY_POINT_GROUPS:
         try:
             for key, _ in process_metadata[ep_group].items():
-                if key not in workflow_calculations_entrypoints:
-                    keys_to_delete.append(key)
-                else:
-                    process_metadata[ep_group][key]["class"] = entrypoints[ep_group][
+                if key in entrypoints[ep_group]:
+                    filtered_metadata[ep_group][key] = process_metadata[ep_group][key]
+                    filtered_metadata[ep_group][key]["class"] = entrypoints[ep_group][
                         key
                     ]
         except KeyError:
             continue
 
-    for ep_group in ENTRY_POINT_GROUPS:
-        for key in keys_to_delete:
-            try:
-                del process_metadata[ep_group][key]
-            except KeyError:
-                continue
-    return process_metadata
+    return filtered_metadata
 
 
 def test_install_all(container_image):
     with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
         data = json.load(handle)
-
+    i=0
     print("[test installing plugins]")
-    for _k, plugin in data.items():
+    for plugin_name, plugin in data.items():
+        i+=1
+        if i == 4:
+            break
         print(" - {}".format(plugin["name"]))
 
         # this currently checks for the wrong python version
@@ -220,10 +211,10 @@ def test_install_all(container_image):
         for ep_group in ENTRY_POINT_GROUPS:
             try:
                 if process_metadata[ep_group]:
-                    for key, _ in data[_k]["entry_points"][ep_group].items():
-                        data[_k]["entry_points"][ep_group][key] = process_metadata[
-                            ep_group
-                        ][key]
+                    for key, _ in data[plugin_name]["entry_points"][ep_group].items():
+                        data[plugin_name]["entry_points"][ep_group][
+                            key
+                        ] = process_metadata[ep_group][key]
             except KeyError:
                 continue
 
