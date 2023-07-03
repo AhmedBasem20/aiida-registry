@@ -4457,9 +4457,7 @@
       "hosted_on": "github.com",
       "metadata": {
         "description": "AiiDA Plugin for the Wannier90 code",
-        "author": "Dominik Gresch, Antimo Marrazzo, Daniel Marchand, Giovanni Pizzi, Junfeng Qiao, Norma Rivano, and the AiiDA team",
-        "license": "MIT",
-        "home_page": "https://github.com/aiidateam/aiida-wannier90",
+        "author": "Junfeng Qiao, Dominik Gresch, Antimo Marrazzo, Daniel Marchand, Giovanni Pizzi, Norma Rivano, The AiiDA team",
         "classifiers": [
           "Development Status :: 5 - Production/Stable",
           "Environment :: Plugins",
@@ -4467,21 +4465,25 @@
           "Intended Audience :: Science/Research",
           "License :: OSI Approved :: MIT License",
           "Natural Language :: English",
+          "Operating System :: MacOS :: MacOS X",
+          "Operating System :: POSIX :: Linux",
           "Programming Language :: Python",
-          "Programming Language :: Python :: 2.7",
-          "Programming Language :: Python :: 3.6",
-          "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
           "Topic :: Scientific/Engineering :: Physics"
         ],
-        "version": "2.0.1"
+        "version": "2.1.0"
       },
-      "aiida_version": ">=1.0.0,<2",
+      "aiida_version": ">=2.0,<3",
       "entry_points": {
         "aiida.calculations": {
+          "wannier90.postw90": "aiida_wannier90.calculations:Postw90Calculation",
           "wannier90.wannier90": "aiida_wannier90.calculations:Wannier90Calculation"
         },
-        "aiida.data": {},
         "aiida.parsers": {
+          "wannier90.postw90": "aiida_wannier90.parsers:Postw90Parser",
           "wannier90.wannier90": "aiida_wannier90.parsers:Wannier90Parser"
         },
         "aiida.workflows": {
@@ -4494,12 +4496,12 @@
         {
           "colorclass": "blue",
           "text": "Calculations",
-          "count": 1
+          "count": 2
         },
         {
           "colorclass": "brown",
           "text": "Parsers",
-          "count": 1
+          "count": 2
         },
         {
           "colorclass": "green",
@@ -4824,13 +4826,13 @@
       "name": "Calculations",
       "colorclass": "blue",
       "num_entries": 53,
-      "total_num": 129
+      "total_num": 130
     },
     {
       "name": "Parsers",
       "colorclass": "brown",
       "num_entries": 54,
-      "total_num": 108
+      "total_num": 109
     },
     {
       "name": "Data",
