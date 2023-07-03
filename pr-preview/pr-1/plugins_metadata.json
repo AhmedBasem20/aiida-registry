@@ -4488,7 +4488,7 @@
           "wannier90.minimal": "aiida_wannier90.workflows.minimal:MinimalW90WorkChain"
         }
       },
-      "commits_count": 0,
+      "commits_count": 18,
       "development_status": "stable",
       "summaryinfo": [
         {
