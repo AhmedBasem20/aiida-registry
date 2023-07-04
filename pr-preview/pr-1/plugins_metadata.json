@@ -1711,7 +1711,7 @@
           "aiida-firecrest-cli": "aiida_firecrest.cli:main"
         }
       },
-      "commits_count": 18,
+      "commits_count": 19,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -1846,7 +1846,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 256,
+      "commits_count": 253,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -2751,7 +2751,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 15,
+      "commits_count": 17,
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/atztogo/aiida-nims-scheduler"
     },
@@ -4196,7 +4196,7 @@
           "tbextraction.optimize_strained_fp_tb": "aiida_tbextraction.optimize_strained_fp_tb:OptimizeStrainedFirstPrinciplesTightBinding"
         }
       },
-      "commits_count": -1,
+      "commits_count": 0,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -4247,7 +4247,7 @@
           "tbmodels.model": "aiida_tbmodels.parsers.model:ModelParser"
         }
       },
-      "commits_count": -1,
+      "commits_count": 0,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -4286,7 +4286,7 @@
           "tcod": "aiida.tools.dbexporters.tcod"
         }
       },
-      "commits_count": -1,
+      "commits_count": 0,
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -4326,7 +4326,7 @@
           "UppASD_core_parsers": "UppASD_AiiDA.parsers.core_parser:SpinDynamic_core_parser"
         }
       },
-      "commits_count": -1,
+      "commits_count": 0,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -4410,7 +4410,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": -1,
+      "commits_count": 113,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -4490,7 +4490,7 @@
           "wannier90.minimal": "aiida_wannier90.workflows.minimal:MinimalW90WorkChain"
         }
       },
-      "commits_count": -1,
+      "commits_count": 19,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -4546,7 +4546,7 @@
           "wannier90_workflows.wannier90": "aiida_wannier90_workflows.workflows.wannier:Wannier90WorkChain"
         }
       },
-      "commits_count": -1,
+      "commits_count": 0,
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -4565,7 +4565,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": -1,
+      "commits_count": 8,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -4604,7 +4604,7 @@
           "yambo.yambo": "aiida_yambo.parsers.parsers:YamboParser"
         }
       },
-      "commits_count": -1,
+      "commits_count": 66,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -4657,7 +4657,7 @@
           "aiida-yambo-wannier90": "aiida_yambo_wannier90.cli:cmd_root"
         }
       },
-      "commits_count": -1,
+      "commits_count": 4,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -4728,7 +4728,7 @@
           "yascheduler": "yascheduler.aiida_plugin:YaScheduler"
         }
       },
-      "commits_count": -1,
+      "commits_count": 142,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -4754,7 +4754,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": -1,
+      "commits_count": 21,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/AntimoMarrazzo/aiida-z2pack"
@@ -4795,7 +4795,7 @@
         },
         "aiida.workflows": {}
       },
-      "commits_count": -1,
+      "commits_count": 0,
       "summaryinfo": [
         {
           "colorclass": "blue",
