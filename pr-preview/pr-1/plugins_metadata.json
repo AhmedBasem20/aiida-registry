@@ -143,7 +143,7 @@
           "lammps.ann": "aiida_aenet.data.potentials.lammps:ANN"
         }
       },
-      "commits_count": 15,
+      "commits_count": 4,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -984,7 +984,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 348,
+      "commits_count": 351,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -1054,7 +1054,7 @@
           "cp2k.base": "aiida_cp2k.workchains:Cp2kBaseWorkChain"
         }
       },
-      "commits_count": 15,
+      "commits_count": 16,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -1846,7 +1846,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 249,
+      "commits_count": 246,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -2413,7 +2413,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 154,
+      "commits_count": 153,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -2889,7 +2889,7 @@
           "optimize.wrappers.create_evaluate": "aiida_optimize.wrappers._create_evaluate:CreateEvaluateWorkChain"
         }
       },
-      "commits_count": 3,
+      "commits_count": 2,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -3775,7 +3775,7 @@
           "core.shell": "aiida_shell.parsers.shell:ShellParser"
         }
       },
-      "commits_count": 46,
+      "commits_count": 47,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -4565,7 +4565,7 @@
           "aiida-wannier90-workflows": "aiida_wannier90_workflows.cli:cmd_root"
         }
       },
-      "commits_count": 51,
+      "commits_count": 52,
       "summaryinfo": [
         {
           "colorclass": "blue",
