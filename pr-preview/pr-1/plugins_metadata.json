@@ -1846,7 +1846,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 245,
+      "commits_count": 244,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -2413,7 +2413,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 142,
+      "commits_count": 139,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -3862,7 +3862,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 60,
+      "commits_count": 58,
       "development_status": "planning",
       "summaryinfo": [
         {
