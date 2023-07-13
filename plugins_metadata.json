@@ -806,7 +806,7 @@
           "lammps.ann": "aiida_aenet.data.potentials.lammps:ANN"
         }
       },
-      "commits_count": 4,
+      "commits_count": 3,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -5902,7 +5902,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 352,
+      "commits_count": 347,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -13534,7 +13534,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 138,
+      "commits_count": 131,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -28255,7 +28255,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 111,
+      "commits_count": 110,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -31065,7 +31065,7 @@
           "yascheduler": "yascheduler.aiida_plugin:YaScheduler"
         }
       },
-      "commits_count": 145,
+      "commits_count": 144,
       "development_status": "beta",
       "summaryinfo": [
         {
