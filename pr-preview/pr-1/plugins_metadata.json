@@ -143,7 +143,7 @@
           "lammps.ann": "aiida_aenet.data.potentials.lammps:ANN"
         }
       },
-      "commits_count": 4,
+      "commits_count": 3,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -984,7 +984,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 353,
+      "commits_count": 347,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -2413,7 +2413,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 139,
+      "commits_count": 131,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -2676,7 +2676,7 @@
           "muon.find_muon": "aiida_muon.workflows.find_muon:FindMuonWorkChain"
         }
       },
-      "commits_count": 13,
+      "commits_count": 15,
       "development_status": "pre-alpha",
       "summaryinfo": [
         {
@@ -3581,7 +3581,7 @@
           "aiida-quantumespresso": "aiida_quantumespresso.cli:cmd_root"
         }
       },
-      "commits_count": 97,
+      "commits_count": 95,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -4410,7 +4410,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 113,
+      "commits_count": 110,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -4638,7 +4638,7 @@
           "yambo.yambo": "aiida_yambo.parsers.parsers:YamboParser"
         }
       },
-      "commits_count": 64,
+      "commits_count": 60,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -4762,7 +4762,7 @@
           "yascheduler": "yascheduler.aiida_plugin:YaScheduler"
         }
       },
-      "commits_count": 149,
+      "commits_count": 144,
       "development_status": "beta",
       "summaryinfo": [
         {
