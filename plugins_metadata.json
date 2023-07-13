@@ -806,7 +806,7 @@
           "lammps.ann": "aiida_aenet.data.potentials.lammps:ANN"
         }
       },
-      "commits_count": 3,
+      "commits_count": 2,
       "summaryinfo": [
         {
           "colorclass": "blue",
