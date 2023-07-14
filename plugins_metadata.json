@@ -5902,7 +5902,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 347,
+      "commits_count": 344,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -11906,7 +11906,7 @@
           "flexpart.multi_dates": "aiida_flexpart.workflows.multi_dates_workflow:FlexpartMultipleDatesWorkflow"
         }
       },
-      "commits_count": 9,
+      "commits_count": 3,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -13534,7 +13534,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 131,
+      "commits_count": 121,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -15169,7 +15169,7 @@
           }
         }
       },
-      "commits_count": 15,
+      "commits_count": 16,
       "development_status": "pre-alpha",
       "summaryinfo": [
         {
@@ -23726,7 +23726,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 58,
+      "commits_count": 43,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -30669,7 +30669,7 @@
           "aiida-wannier90-workflows": "aiida_wannier90_workflows.cli:cmd_root"
         }
       },
-      "commits_count": 52,
+      "commits_count": 49,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -30941,7 +30941,7 @@
           "yambo.yambo": "aiida_yambo.parsers.parsers:YamboParser"
         }
       },
-      "commits_count": 60,
+      "commits_count": 59,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -31065,7 +31065,7 @@
           "yascheduler": "yascheduler.aiida_plugin:YaScheduler"
         }
       },
-      "commits_count": 144,
+      "commits_count": 142,
       "development_status": "beta",
       "summaryinfo": [
         {
