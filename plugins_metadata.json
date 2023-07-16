@@ -806,7 +806,7 @@
           "lammps.ann": "aiida_aenet.data.potentials.lammps:ANN"
         }
       },
-      "commits_count": 2,
+      "commits_count": 1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -11970,7 +11970,7 @@
           "gaussian.cubes": "aiida_gaussian.workchains:GaussianCubesWorkChain"
         }
       },
-      "commits_count": 23,
+      "commits_count": 20,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -15323,7 +15323,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 31,
+      "commits_count": 29,
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/nanotech-empa/aiida-nanotech-empa"
     },
@@ -23686,7 +23686,7 @@
       },
       "aiida_version": ">=2.0.0,<3.0.0",
       "entry_points": {},
-      "commits_count": 12,
+      "commits_count": 10,
       "development_status": "stable",
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-siesta"
@@ -23726,7 +23726,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 42,
+      "commits_count": 36,
       "development_status": "planning",
       "summaryinfo": [
         {
