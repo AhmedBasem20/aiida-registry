@@ -23686,7 +23686,7 @@
       },
       "aiida_version": ">=2.0.0,<3.0.0",
       "entry_points": {},
-      "commits_count": 10,
+      "commits_count": 8,
       "development_status": "stable",
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-siesta"
@@ -23726,7 +23726,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 36,
+      "commits_count": 31,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -31065,7 +31065,7 @@
           "yascheduler": "yascheduler.aiida_plugin:YaScheduler"
         }
       },
-      "commits_count": 127,
+      "commits_count": 126,
       "development_status": "beta",
       "summaryinfo": [
         {
