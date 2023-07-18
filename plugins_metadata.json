@@ -11844,7 +11844,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 238,
+      "commits_count": 227,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -12320,6 +12320,12 @@
                   "info": "Command line parameters for gmx editconf."
                 },
                 {
+                  "name": "bf_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Generic data file."
+                },
+                {
                   "name": "code",
                   "required": false,
                   "valid_types": "AbstractCode, NoneType",
@@ -12336,6 +12342,12 @@
                   "required": false,
                   "valid_types": "Dict",
                   "info": "Add monitoring functions that can inspect output files while the job is run ..."
+                },
+                {
+                  "name": "n_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Index file."
                 },
                 {
                   "name": "remote_folder",
@@ -12470,6 +12482,12 @@
                   "info": "Add monitoring functions that can inspect output files while the job is run ..."
                 },
                 {
+                  "name": "n_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Index file."
+                },
+                {
                   "name": "remote_folder",
                   "required": false,
                   "valid_types": "RemoteData, NoneType",
@@ -12602,10 +12620,10 @@
                   "info": "The `Code` to use for this job. This input is required, unless the `remote_ ..."
                 },
                 {
-                  "name": "itpfile",
+                  "name": "e_file",
                   "required": false,
                   "valid_types": "SinglefileData, NoneType",
-                  "info": "Restraints file"
+                  "info": "Energy file"
                 },
                 {
                   "name": "metadata",
@@ -12620,10 +12638,46 @@
                   "info": "Add monitoring functions that can inspect output files while the job is run ..."
                 },
                 {
+                  "name": "n_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Index file"
+                },
+                {
+                  "name": "qmi_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "QM input file"
+                },
+                {
+                  "name": "r_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Structure file"
+                },
+                {
+                  "name": "rb_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Structure file"
+                },
+                {
+                  "name": "ref_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Full precision trajectory file"
+                },
+                {
                   "name": "remote_folder",
                   "required": false,
                   "valid_types": "RemoteData, NoneType",
                   "info": "Remote directory containing the results of an already completed calculation ..."
+                },
+                {
+                  "name": "t_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Full precision trajectory file"
                 }
               ],
               "outputs": [
@@ -12728,10 +12782,34 @@
                   "info": "Input structure."
                 },
                 {
+                  "name": "awh_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "xvgr/xmgr file"
+                },
+                {
                   "name": "code",
                   "required": false,
                   "valid_types": "AbstractCode, NoneType",
                   "info": "The `Code` to use for this job. This input is required, unless the `remote_ ..."
+                },
+                {
+                  "name": "cpi_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Checkpoint file"
+                },
+                {
+                  "name": "ei_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "ED sampling input"
+                },
+                {
+                  "name": "membed_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Generic data file"
                 },
                 {
                   "name": "metadata",
@@ -12740,16 +12818,58 @@
                   "info": ""
                 },
                 {
+                  "name": "mn_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Index file"
+                },
+                {
                   "name": "monitors",
                   "required": false,
                   "valid_types": "Dict",
                   "info": "Add monitoring functions that can inspect output files while the job is run ..."
                 },
                 {
+                  "name": "mp_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Topology file"
+                },
+                {
+                  "name": "multidir_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Run directory"
+                },
+                {
                   "name": "remote_folder",
                   "required": false,
                   "valid_types": "RemoteData, NoneType",
                   "info": "Remote directory containing the results of an already completed calculation ..."
+                },
+                {
+                  "name": "rerun_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "Trajectory: xtc trr cpt gro g96 pdb tng"
+                },
+                {
+                  "name": "table_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "xvgr/xmgr file"
+                },
+                {
+                  "name": "tableb_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "xvgr/xmgr file"
+                },
+                {
+                  "name": "tablep_file",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "xvgr/xmgr file"
                 }
               ],
               "outputs": [
@@ -13305,7 +13425,7 @@
           }
         }
       },
-      "commits_count": 54,
+      "commits_count": 67,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -23726,7 +23846,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 31,
+      "commits_count": 21,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -23784,7 +23904,7 @@
           "spirit": "aiida_spirit.parsers:SpiritParser"
         }
       },
-      "commits_count": 22,
+      "commits_count": 9,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -31065,7 +31185,7 @@
           "yascheduler": "yascheduler.aiida_plugin:YaScheduler"
         }
       },
-      "commits_count": 126,
+      "commits_count": 123,
       "development_status": "beta",
       "summaryinfo": [
         {
