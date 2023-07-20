@@ -3425,7 +3425,7 @@
           "catmat.vasp_multistage_ddec": "aiida_catmat.workchains:VaspMultiStageDdecWorkChain"
         }
       },
-      "commits_count": 19,
+      "commits_count": 16,
       "summaryinfo": [
         {
           "colorclass": "brown",
@@ -11906,7 +11906,7 @@
           "flexpart.multi_dates": "aiida_flexpart.workflows.multi_dates_workflow:FlexpartMultipleDatesWorkflow"
         }
       },
-      "commits_count": 3,
+      "commits_count": 0,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -13654,7 +13654,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 113,
+      "commits_count": 109,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -15289,7 +15289,7 @@
           }
         }
       },
-      "commits_count": 16,
+      "commits_count": 21,
       "development_status": "pre-alpha",
       "summaryinfo": [
         {
@@ -23169,7 +23169,7 @@
           "aiida-quantumespresso": "aiida_quantumespresso.cli:cmd_root"
         }
       },
-      "commits_count": 95,
+      "commits_count": 96,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -23846,7 +23846,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 21,
+      "commits_count": 20,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -30789,7 +30789,7 @@
           "aiida-wannier90-workflows": "aiida_wannier90_workflows.cli:cmd_root"
         }
       },
-      "commits_count": 49,
+      "commits_count": 45,
       "summaryinfo": [
         {
           "colorclass": "blue",
