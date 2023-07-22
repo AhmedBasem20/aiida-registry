@@ -3425,7 +3425,7 @@
           "catmat.vasp_multistage_ddec": "aiida_catmat.workchains:VaspMultiStageDdecWorkChain"
         }
       },
-      "commits_count": 1,
+      "commits_count": 0,
       "summaryinfo": [
         {
           "colorclass": "brown",
@@ -7099,7 +7099,7 @@
           "crystal_dft": "aiida_crystal_dft.cli.basis:basis_set"
         }
       },
-      "commits_count": 24,
+      "commits_count": 22,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -11844,7 +11844,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 226,
+      "commits_count": 225,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -12036,7 +12036,7 @@
           "gaussian.pseudo": "aiida_gaussian_datatypes.groups:PseudopotentialGroup"
         }
       },
-      "commits_count": 10,
+      "commits_count": 0,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -13654,7 +13654,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 104,
+      "commits_count": 100,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -15443,7 +15443,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 29,
+      "commits_count": 27,
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/nanotech-empa/aiida-nanotech-empa"
     },
@@ -24347,7 +24347,7 @@
           "supercell": "aiida_supercell.parsers:SupercellParser"
         }
       },
-      "commits_count": 3,
+      "commits_count": 0,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -30789,7 +30789,7 @@
           "aiida-wannier90-workflows": "aiida_wannier90_workflows.cli:cmd_root"
         }
       },
-      "commits_count": 44,
+      "commits_count": 43,
       "summaryinfo": [
         {
           "colorclass": "blue",
