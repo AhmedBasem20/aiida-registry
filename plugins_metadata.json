@@ -5902,7 +5902,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 341,
+      "commits_count": 340,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -23846,7 +23846,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 20,
+      "commits_count": 18,
       "development_status": "planning",
       "summaryinfo": [
         {
