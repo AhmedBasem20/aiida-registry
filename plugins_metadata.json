@@ -11844,7 +11844,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 225,
+      "commits_count": 213,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -13182,7 +13182,7 @@
                   "name": "log",
                   "required": false,
                   "valid_types": "SinglefileData",
-                  "info": "link to the default file.log."
+                  "info": "link to the default file.out."
                 },
                 {
                   "name": "remote_stash",
@@ -13425,7 +13425,7 @@
           }
         }
       },
-      "commits_count": 67,
+      "commits_count": 78,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -15443,7 +15443,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 27,
+      "commits_count": 28,
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/nanotech-empa/aiida-nanotech-empa"
     },
@@ -18378,7 +18378,7 @@
           "Programming Language :: Python :: 3.8",
           "Programming Language :: Python :: 3.9"
         ],
-        "version": "4.3.0"
+        "version": "4.4.0"
       },
       "aiida_version": ">=2.3,<3.0",
       "entry_points": {
@@ -18534,6 +18534,10 @@
                   "message": "The retrieved temporary folder could not be accessed."
                 },
                 {
+                  "status": 302,
+                  "message": "The retrieved folder did not contain the required stdout output file."
+                },
+                {
                   "status": 303,
                   "message": "The required XML file is not present in the retrieved folder."
                 },
@@ -18547,7 +18551,7 @@
                 },
                 {
                   "status": 311,
-                  "message": "The output file contains invalid output."
+                  "message": "The stdout output file could not be parsed."
                 },
                 {
                   "status": 312,
@@ -18564,6 +18568,10 @@
                 {
                   "status": 340,
                   "message": "The required trajectory data could not be read."
+                },
+                {
+                  "status": 400,
+                  "message": "The calculation stopped prematurely because it ran out of walltime."
                 }
               ]
             },
@@ -18628,6 +18636,87 @@
               ]
             },
             "class": "aiida_quantumespresso.calculations.functions.create_kpoints_from_distance:create_kpoints_from_distance"
+          },
+          "quantumespresso.create_magnetic_configuration": {
+            "description": [
+              "Create a new magnetic configuration from the given structure based on a list of magnetic moments per site.",
+              "",
+              "    To create the new list of kinds, the algorithm loops over all the elements in the structure and makes a list of the",
+              "    sites with that element and their corresponding magnetic moment. Next, it splits this list in three lists:",
+              "",
+              "    * Zero magnetic moments: Any site that has an absolute magnetic moment lower than ``ztol``",
+              "    * Positive magnetic moments",
+              "    * Negative magnetic moments",
+              "",
+              "    The algorithm then sorts the positive and negative lists from large to small absolute value, and loops over each of",
+              "    list. New magnetic kinds will be created when the absolute difference between the magnetic moment of the current",
+              "    kind and the site exceeds ``atol``.",
+              "",
+              "    The positive and negative magnetic moments are handled separately to avoid assigning two sites with opposite signs",
+              "    in their magnetic moment to the same kind and make sure that each kind has the correct magnetic moment, i.e. the",
+              "    largest magnetic moment in absolute value of the sites corresponding to that kind.",
+              "",
+              "    .. important:: the function currently does not support alloys.",
+              "",
+              "    :param structure: a `StructureData` instance.",
+              "    :param magnetic_moment_per_site: list of magnetic moments for each site in the structure.",
+              "    :param atol: the absolute tolerance on determining if two sites have the same magnetic moment.",
+              "    :param ztol: threshold for considering a kind to have non-zero magnetic moment."
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "magnetic_moment_per_site",
+                  "required": true,
+                  "valid_types": "Data",
+                  "info": "list of magnetic moments for each site in the structure."
+                },
+                {
+                  "name": "structure",
+                  "required": true,
+                  "valid_types": "Data",
+                  "info": "a `StructureData` instance."
+                },
+                {
+                  "name": "atol",
+                  "required": false,
+                  "valid_types": "Data",
+                  "info": "the absolute tolerance on determining if two sites have the same magnetic m ..."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "ztol",
+                  "required": false,
+                  "valid_types": "Data",
+                  "info": "threshold for considering a kind to have non-zero magnetic moment."
+                }
+              ],
+              "outputs": [],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                }
+              ]
+            },
+            "class": "aiida_quantumespresso.calculations.functions.create_magnetic_configuration:create_magnetic_configuration"
           },
           "quantumespresso.dos": {
             "description": [
@@ -18752,8 +18841,16 @@
                   "message": "{message}"
                 },
                 {
+                  "status": 302,
+                  "message": "The retrieved folder did not contain the required stdout output file."
+                },
+                {
                   "status": 310,
-                  "message": "The stdout output file could not be read."
+                  "message": "An exception was raised while reading the `stdout` file: {exception}"
+                },
+                {
+                  "status": 311,
+                  "message": "An exception was raised while parsing the `stdout` file: {exception}"
                 },
                 {
                   "status": 312,
@@ -19046,8 +19143,16 @@
                   "message": "{message}"
                 },
                 {
+                  "status": 302,
+                  "message": "The retrieved folder did not contain the required stdout output file."
+                },
+                {
                   "status": 310,
-                  "message": "The stdout output file could not be read."
+                  "message": "An exception was raised while reading the `stdout` file: {exception}"
+                },
+                {
+                  "status": 311,
+                  "message": "An exception was raised while parsing the `stdout` file: {exception}"
                 },
                 {
                   "status": 312,
@@ -19213,6 +19318,22 @@
                 {
                   "status": 150,
                   "message": "{message}"
+                },
+                {
+                  "status": 302,
+                  "message": "The retrieved folder did not contain the required stdout output file."
+                },
+                {
+                  "status": 310,
+                  "message": "An exception was raised while reading the `stdout` file: {exception}"
+                },
+                {
+                  "status": 311,
+                  "message": "An exception was raised while parsing the `stdout` file: {exception}"
+                },
+                {
+                  "status": 312,
+                  "message": "The stdout output file was incomplete probably because the calculation got interrupted."
                 }
               ]
             },
@@ -19375,18 +19496,6 @@
                   "message": "The required XML file is not present in the retrieved folder."
                 },
                 {
-                  "status": 310,
-                  "message": "The stdout output file could not be read."
-                },
-                {
-                  "status": 311,
-                  "message": "The output file contains invalid output."
-                },
-                {
-                  "status": 312,
-                  "message": "The stdout output file was incomplete probably because the calculation got interrupted."
-                },
-                {
                   "status": 320,
                   "message": "The XML output file could not be read."
                 },
@@ -19529,20 +19638,24 @@
                   "message": "The retrieved folder data node could not be accessed."
                 },
                 {
+                  "status": 302,
+                  "message": "The retrieved folder did not contain the required stdout output file."
+                },
+                {
                   "status": 310,
-                  "message": "The stdout output file could not be read."
+                  "message": "An exception was raised while reading the `stdout` file: {exception}"
                 },
                 {
                   "status": 311,
+                  "message": "An exception was raised while parsing the `stdout` file: {exception}"
+                },
+                {
+                  "status": 312,
                   "message": "The stdout output file was incomplete probably because the calculation got interrupted."
                 },
                 {
                   "status": 312,
                   "message": "Found rotation or fractional translation not compatible with FFT grid."
-                },
-                {
-                  "status": 340,
-                  "message": "Encountered a generic error message."
                 },
                 {
                   "status": 350,
@@ -19859,6 +19972,10 @@
                   "message": "The stdout output file could not be read."
                 },
                 {
+                  "status": 311,
+                  "message": "The stdout output file could not be parsed."
+                },
+                {
                   "status": 312,
                   "message": "The stdout output file was incomplete."
                 },
@@ -19876,7 +19993,7 @@
                 },
                 {
                   "status": 333,
-                  "message": "The formatted data output file `{filename}` could not be parsed"
+                  "message": "The formatted data output file `{filename}` could not be parsed: {exception}"
                 },
                 {
                   "status": 340,
@@ -20058,12 +20175,20 @@
                   "message": "The retrieved temporary folder could not be accessed."
                 },
                 {
+                  "status": 302,
+                  "message": "The retrieved folder did not contain the required stdout output file."
+                },
+                {
                   "status": 303,
                   "message": "The retrieved folder did not contain the required XML file."
                 },
                 {
                   "status": 310,
-                  "message": "The stdout output file could not be read."
+                  "message": "An exception was raised while reading the `stdout` file: {exception}"
+                },
+                {
+                  "status": 311,
+                  "message": "An exception was raised while parsing the `stdout` file: {exception}"
                 },
                 {
                   "status": 312,
@@ -20559,11 +20684,11 @@
                 },
                 {
                   "status": 310,
-                  "message": "The stdout output file could not be read."
+                  "message": "An exception was raised while reading the `stdout` file: {exception}"
                 },
                 {
                   "status": 311,
-                  "message": "The stdout output file could not be parsed."
+                  "message": "An exception was raised while parsing the `stdout` file: {exception}"
                 },
                 {
                   "status": 312,
@@ -20710,8 +20835,16 @@
                   "message": "{message}"
                 },
                 {
+                  "status": 302,
+                  "message": "The retrieved folder did not contain the required stdout output file."
+                },
+                {
                   "status": 310,
-                  "message": "The stdout output file could not be read."
+                  "message": "An exception was raised while reading the `stdout` file: {exception}"
+                },
+                {
+                  "status": 311,
+                  "message": "An exception was raised while parsing the `stdout` file: {exception}"
                 },
                 {
                   "status": 312,
@@ -21206,8 +21339,16 @@
                   "message": "{message}"
                 },
                 {
+                  "status": 302,
+                  "message": "The retrieved folder did not contain the required stdout output file."
+                },
+                {
                   "status": 310,
-                  "message": "The stdout output file could not be read."
+                  "message": "An exception was raised while reading the `stdout` file: {exception}"
+                },
+                {
+                  "status": 311,
+                  "message": "An exception was raised while parsing the `stdout` file: {exception}"
                 },
                 {
                   "status": 312,
@@ -21418,8 +21559,16 @@
                   "message": "{message}"
                 },
                 {
+                  "status": 302,
+                  "message": "The retrieved folder did not contain the required stdout output file."
+                },
+                {
                   "status": 310,
-                  "message": "The stdout output file could not be read."
+                  "message": "An exception was raised while reading the `stdout` file: {exception}"
+                },
+                {
+                  "status": 311,
+                  "message": "An exception was raised while parsing the `stdout` file: {exception}"
                 },
                 {
                   "status": 312,
@@ -23169,13 +23318,13 @@
           "aiida-quantumespresso": "aiida_quantumespresso.cli:cmd_root"
         }
       },
-      "commits_count": 96,
+      "commits_count": 97,
       "development_status": "stable",
       "summaryinfo": [
         {
           "colorclass": "blue",
           "text": "Calculations",
-          "count": 19
+          "count": 20
         },
         {
           "colorclass": "brown",
@@ -23846,7 +23995,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 18,
+      "commits_count": 16,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -29060,1730 +29209,22 @@
       "aiida_version": ">=2.0,<3",
       "entry_points": {
         "aiida.calculations": {
-          "wannier90_workflows.split": {
-            "description": [
-              "AiiDA calculation plugin wrapping the split AMN/MMN/EIG script."
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "num_val",
-                  "required": true,
-                  "valid_types": "Int",
-                  "info": "Number of valence WFs."
-                },
-                {
-                  "name": "code",
-                  "required": false,
-                  "valid_types": "AbstractCode, NoneType",
-                  "info": "The `Code` to use for this job. This input is required, unless the `remote_ ..."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "monitors",
-                  "required": false,
-                  "valid_types": "Dict",
-                  "info": "Add monitoring functions that can inspect output files while the job is run ..."
-                },
-                {
-                  "name": "parent_folder",
-                  "required": false,
-                  "valid_types": "RemoteData, NoneType",
-                  "info": "Remote folder containing win/amn/mmn/eig/unk files."
-                },
-                {
-                  "name": "remote_folder",
-                  "required": false,
-                  "valid_types": "RemoteData, NoneType",
-                  "info": "Remote directory containing the results of an already completed calculation ..."
-                },
-                {
-                  "name": "rotate_unk",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "Number of valence WFs."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "output_parameters",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": "Output parameters."
-                },
-                {
-                  "name": "remote_folder",
-                  "required": true,
-                  "valid_types": "RemoteData",
-                  "info": "Input files necessary to run the process will be stored in this folder node ..."
-                },
-                {
-                  "name": "remote_folder_cond",
-                  "required": true,
-                  "valid_types": "RemoteData",
-                  "info": "Remote folder for conduction."
-                },
-                {
-                  "name": "remote_folder_val",
-                  "required": true,
-                  "valid_types": "RemoteData",
-                  "info": "Remote folder for valence."
-                },
-                {
-                  "name": "retrieved",
-                  "required": true,
-                  "valid_types": "FolderData",
-                  "info": "Files that are retrieved by the daemon will be stored in this node. By defa ..."
-                },
-                {
-                  "name": "remote_stash",
-                  "required": false,
-                  "valid_types": "RemoteStashData",
-                  "info": "Contents of the `stash.source_list` option are stored in this remote folder ..."
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 100,
-                  "message": "The process did not have the required `retrieved` output."
-                },
-                {
-                  "status": 110,
-                  "message": "The job ran out of memory."
-                },
-                {
-                  "status": 120,
-                  "message": "The job ran out of walltime."
-                },
-                {
-                  "status": 131,
-                  "message": "The specified account is invalid."
-                },
-                {
-                  "status": 140,
-                  "message": "The node running the job failed."
-                },
-                {
-                  "status": 150,
-                  "message": "{message}"
-                },
-                {
-                  "status": 300,
-                  "message": "Calculation did not produce all expected output files."
-                },
-                {
-                  "status": 301,
-                  "message": "The retrieved temporary folder could not be accessed."
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.calculations.split:Wannier90SplitCalculation"
-          }
+          "wannier90_workflows.split": "aiida_wannier90_workflows.calculations.split:Wannier90SplitCalculation"
         },
         "aiida.parsers": {
           "wannier90_workflows.split": "aiida_wannier90_workflows.parsers.split:Wannier90SplitParser"
         },
         "aiida.workflows": {
-          "wannier90_workflows.bands": {
-            "description": [
-              "WorkChain to automatically compute a Wannier band structure for a given structure."
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "pw2wannier90",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Pw2wannier90BaseWorkChain`."
-                },
-                {
-                  "name": "structure",
-                  "required": true,
-                  "valid_types": "StructureData",
-                  "info": "The input structure."
-                },
-                {
-                  "name": "wannier90",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Wannier90BaseWorkChain`."
-                },
-                {
-                  "name": "bands_kpoints",
-                  "required": false,
-                  "valid_types": "KpointsData, NoneType",
-                  "info": "Explicit kpoints to use for the wannier90 bands interpolation. If specified ..."
-                },
-                {
-                  "name": "bands_kpoints_distance",
-                  "required": false,
-                  "valid_types": "Float, NoneType",
-                  "info": "Minimum kpoints distance for seekpath to generate a list of kpoints along t ..."
-                },
-                {
-                  "name": "clean_workdir",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If True, work directories of all called calculation will be cleaned at the  ..."
-                },
-                {
-                  "name": "kpoint_path",
-                  "required": false,
-                  "valid_types": "KpointsData, NoneType",
-                  "info": "High symmetry kpoints to use for the wannier90 bands interpolation. If spec ..."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "nscf",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwBaseWorkChain` for the NSCF calculation."
-                },
-                {
-                  "name": "open_grid",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `OpenGridBaseWorkChain`, if not specified the open_grid step ..."
-                },
-                {
-                  "name": "projwfc",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `ProjwfcBaseWorkChain`."
-                },
-                {
-                  "name": "scf",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwBaseWorkChain` for the SCF calculation."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "band_structure",
-                  "required": true,
-                  "valid_types": "BandsData",
-                  "info": "The Wannier interpolated band structure."
-                },
-                {
-                  "name": "pw2wannier90",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "wannier90",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "wannier90_pp",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "nscf",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "open_grid",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "primitive_structure",
-                  "required": false,
-                  "valid_types": "StructureData",
-                  "info": "The normalized and primitivized structure for which the calculations are co ..."
-                },
-                {
-                  "name": "projwfc",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "scf",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "seekpath_parameters",
-                  "required": false,
-                  "valid_types": "Dict",
-                  "info": "The parameters used in the SeeKpath call to normalize the input or relaxed  ..."
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 420,
-                  "message": "the scf PwBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 430,
-                  "message": "the nscf PwBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 440,
-                  "message": "the ProjwfcBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 450,
-                  "message": "the postproc Wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 460,
-                  "message": "the Pw2wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 470,
-                  "message": "the Wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 480,
-                  "message": "outputs sanity check failed"
-                },
-                {
-                  "status": 490,
-                  "message": "the OpenGridBaseWorkChain sub process failed"
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.workflows.bands:Wannier90BandsWorkChain"
-          },
-          "wannier90_workflows.base.open_grid": {
-            "description": [
-              "Workchain to run a open_grid calculation with automated error handling and restarts."
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "open_grid",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": ""
-                },
-                {
-                  "name": "clean_workdir",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If `True`, work directories of all called calculation jobs will be cleaned  ..."
-                },
-                {
-                  "name": "handler_overrides",
-                  "required": false,
-                  "valid_types": "Dict, NoneType",
-                  "info": "Mapping where keys are process handler names and the values are a dictionar ..."
-                },
-                {
-                  "name": "max_iterations",
-                  "required": false,
-                  "valid_types": "Int",
-                  "info": "Maximum number of iterations the work chain will restart the process to fin ..."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "kpoints",
-                  "required": true,
-                  "valid_types": "KpointsData",
-                  "info": "The explicit list of kpoints of the unfolded kmesh"
-                },
-                {
-                  "name": "kpoints_mesh",
-                  "required": true,
-                  "valid_types": "KpointsData",
-                  "info": "The dimensions of the unfolded kmesh"
-                },
-                {
-                  "name": "remote_folder",
-                  "required": true,
-                  "valid_types": "RemoteData",
-                  "info": "Input files necessary to run the process will be stored in this folder node ..."
-                },
-                {
-                  "name": "retrieved",
-                  "required": true,
-                  "valid_types": "FolderData",
-                  "info": "Files that are retrieved by the daemon will be stored in this node. By defa ..."
-                },
-                {
-                  "name": "remote_stash",
-                  "required": false,
-                  "valid_types": "RemoteStashData",
-                  "info": "Contents of the `stash.source_list` option are stored in this remote folder ..."
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 301,
-                  "message": "The sub process excepted."
-                },
-                {
-                  "status": 302,
-                  "message": "The sub process was killed."
-                },
-                {
-                  "status": 311,
-                  "message": "The stdout output file was incomplete probably because the calculation got interrupted."
-                },
-                {
-                  "status": 401,
-                  "message": "The maximum number of iterations was exceeded."
-                },
-                {
-                  "status": 402,
-                  "message": "The process failed for an unknown reason, twice in a row."
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.workflows.base.open_grid:OpenGridBaseWorkChain"
-          },
-          "wannier90_workflows.base.projwfc": {
-            "description": [
-              "Workchain to run a projwfc.x calculation with automated error handling and restarts."
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "projwfc",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": ""
-                },
-                {
-                  "name": "clean_workdir",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If `True`, work directories of all called calculation jobs will be cleaned  ..."
-                },
-                {
-                  "name": "handler_overrides",
-                  "required": false,
-                  "valid_types": "Dict, NoneType",
-                  "info": "Mapping where keys are process handler names and the values are a dictionar ..."
-                },
-                {
-                  "name": "max_iterations",
-                  "required": false,
-                  "valid_types": "Int",
-                  "info": "Maximum number of iterations the work chain will restart the process to fin ..."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "Dos",
-                  "required": true,
-                  "valid_types": "XyData",
-                  "info": ""
-                },
-                {
-                  "name": "output_parameters",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": ""
-                },
-                {
-                  "name": "remote_folder",
-                  "required": true,
-                  "valid_types": "RemoteData",
-                  "info": "Input files necessary to run the process will be stored in this folder node ..."
-                },
-                {
-                  "name": "retrieved",
-                  "required": true,
-                  "valid_types": "FolderData",
-                  "info": "Files that are retrieved by the daemon will be stored in this node. By defa ..."
-                },
-                {
-                  "name": "bands",
-                  "required": false,
-                  "valid_types": "BandsData",
-                  "info": ""
-                },
-                {
-                  "name": "bands_down",
-                  "required": false,
-                  "valid_types": "BandsData",
-                  "info": ""
-                },
-                {
-                  "name": "bands_up",
-                  "required": false,
-                  "valid_types": "BandsData",
-                  "info": ""
-                },
-                {
-                  "name": "projections",
-                  "required": false,
-                  "valid_types": "ProjectionData",
-                  "info": ""
-                },
-                {
-                  "name": "projections_down",
-                  "required": false,
-                  "valid_types": "ProjectionData",
-                  "info": ""
-                },
-                {
-                  "name": "projections_up",
-                  "required": false,
-                  "valid_types": "ProjectionData",
-                  "info": ""
-                },
-                {
-                  "name": "remote_stash",
-                  "required": false,
-                  "valid_types": "RemoteStashData",
-                  "info": "Contents of the `stash.source_list` option are stored in this remote folder ..."
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 301,
-                  "message": "The sub process excepted."
-                },
-                {
-                  "status": 302,
-                  "message": "The sub process was killed."
-                },
-                {
-                  "status": 311,
-                  "message": "The stdout output file was incomplete probably because the calculation got interrupted."
-                },
-                {
-                  "status": 401,
-                  "message": "The maximum number of iterations was exceeded."
-                },
-                {
-                  "status": 402,
-                  "message": "The process failed for an unknown reason, twice in a row."
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.workflows.base.projwfc:ProjwfcBaseWorkChain"
-          },
-          "wannier90_workflows.base.pw2wannier90": {
-            "description": [
-              "Workchain to run a pw2wannier90 calculation with automated error handling and restarts."
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "pw2wannier90",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": ""
-                },
-                {
-                  "name": "bands",
-                  "required": false,
-                  "valid_types": "BandsData, NoneType",
-                  "info": "Bands to calculate SCDM `mu`, `sigma`."
-                },
-                {
-                  "name": "bands_projections",
-                  "required": false,
-                  "valid_types": "ProjectionData, NoneType",
-                  "info": "Bands projectability to calculate SCDM `mu`, `sigma`."
-                },
-                {
-                  "name": "clean_workdir",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If `True`, work directories of all called calculation jobs will be cleaned  ..."
-                },
-                {
-                  "name": "handler_overrides",
-                  "required": false,
-                  "valid_types": "Dict, NoneType",
-                  "info": "Mapping where keys are process handler names and the values are a dictionar ..."
-                },
-                {
-                  "name": "max_iterations",
-                  "required": false,
-                  "valid_types": "Int",
-                  "info": "Maximum number of iterations the work chain will restart the process to fin ..."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "scdm_sigma_factor",
-                  "required": false,
-                  "valid_types": "Float",
-                  "info": "The `sigma` factor of occupation function for SCDM projection."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "output_parameters",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": ""
-                },
-                {
-                  "name": "remote_folder",
-                  "required": true,
-                  "valid_types": "RemoteData",
-                  "info": "Input files necessary to run the process will be stored in this folder node ..."
-                },
-                {
-                  "name": "retrieved",
-                  "required": true,
-                  "valid_types": "FolderData",
-                  "info": "Files that are retrieved by the daemon will be stored in this node. By defa ..."
-                },
-                {
-                  "name": "remote_stash",
-                  "required": false,
-                  "valid_types": "RemoteStashData",
-                  "info": "Contents of the `stash.source_list` option are stored in this remote folder ..."
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 301,
-                  "message": "The sub process excepted."
-                },
-                {
-                  "status": 302,
-                  "message": "The sub process was killed."
-                },
-                {
-                  "status": 311,
-                  "message": "The stdout output file was incomplete probably because the calculation got interrupted."
-                },
-                {
-                  "status": 400,
-                  "message": "Error when fitting `scdm_mu` and `scdm_sigma`."
-                },
-                {
-                  "status": 401,
-                  "message": "The maximum number of iterations was exceeded."
-                },
-                {
-                  "status": 402,
-                  "message": "The process failed for an unknown reason, twice in a row."
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.workflows.base.pw2wannier90:Pw2wannier90BaseWorkChain"
-          },
-          "wannier90_workflows.base.wannier90": {
-            "description": [
-              "Workchain to run a `Wannier90Calculation` with automated error handling and restarts."
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "wannier90",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": ""
-                },
-                {
-                  "name": "auto_energy_windows",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If True use the energy corresponding to projectability = auto_energy_window ..."
-                },
-                {
-                  "name": "auto_energy_windows_threshold",
-                  "required": false,
-                  "valid_types": "Float",
-                  "info": "Threshold for auto_energy_windows."
-                },
-                {
-                  "name": "bands",
-                  "required": false,
-                  "valid_types": "BandsData, NoneType",
-                  "info": "For shift_energy_windows, if provided the energy windows will be shifted by ..."
-                },
-                {
-                  "name": "bands_projections",
-                  "required": false,
-                  "valid_types": "ProjectionData, NoneType",
-                  "info": "Projectability of bands to auto set `dis_froz_max`."
-                },
-                {
-                  "name": "clean_workdir",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If `True`, work directories of all called calculation jobs will be cleaned  ..."
-                },
-                {
-                  "name": "handler_overrides",
-                  "required": false,
-                  "valid_types": "Dict, NoneType",
-                  "info": "Mapping where keys are process handler names and the values are a dictionar ..."
-                },
-                {
-                  "name": "max_iterations",
-                  "required": false,
-                  "valid_types": "Int",
-                  "info": "Maximum number of iterations the work chain will restart the process to fin ..."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "settings",
-                  "required": false,
-                  "valid_types": "Dict, NoneType",
-                  "info": "Additional settings."
-                },
-                {
-                  "name": "shift_energy_windows",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If True the `dis_froz_min`, `dis_froz_max`, `dis_win_min`, `dis_win_max` wi ..."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "output_parameters",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": "The ``output_parameters`` output node of the successful calculation."
-                },
-                {
-                  "name": "remote_folder",
-                  "required": true,
-                  "valid_types": "RemoteData",
-                  "info": "Input files necessary to run the process will be stored in this folder node ..."
-                },
-                {
-                  "name": "retrieved",
-                  "required": true,
-                  "valid_types": "FolderData",
-                  "info": "Files that are retrieved by the daemon will be stored in this node. By defa ..."
-                },
-                {
-                  "name": "interpolated_bands",
-                  "required": false,
-                  "valid_types": "BandsData",
-                  "info": "The interpolated band structure by Wannier90 (if any)."
-                },
-                {
-                  "name": "nnkp_file",
-                  "required": false,
-                  "valid_types": "SinglefileData",
-                  "info": "The ``.nnkp`` file, produced only in -pp (postproc) mode."
-                },
-                {
-                  "name": "remote_stash",
-                  "required": false,
-                  "valid_types": "RemoteStashData",
-                  "info": "Contents of the `stash.source_list` option are stored in this remote folder ..."
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 301,
-                  "message": "The sub process excepted."
-                },
-                {
-                  "status": 302,
-                  "message": "The sub process was killed."
-                },
-                {
-                  "status": 401,
-                  "message": "The maximum number of iterations was exceeded."
-                },
-                {
-                  "status": 401,
-                  "message": "Unrecoverable bvectors error."
-                },
-                {
-                  "status": 402,
-                  "message": "The process failed for an unknown reason, twice in a row."
-                },
-                {
-                  "status": 402,
-                  "message": "Unrecoverable disentanglement error."
-                },
-                {
-                  "status": 403,
-                  "message": "Unrecoverable cube format error."
-                },
-                {
-                  "status": 404,
-                  "message": "The stdout output file was incomplete probably because the calculation got interrupted."
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.workflows.base.wannier90:Wannier90BaseWorkChain"
-          },
-          "wannier90_workflows.open_grid": {
-            "description": [
-              "WorkChain using open_grid.x to bypass the nscf step.",
-              "",
-              "    The open_grid.x unfolds the symmetrized kmesh to a full kmesh, thus",
-              "    the full-kmesh nscf step can be avoided.",
-              "",
-              "    2 schemes:",
-              "      1. scf w/ symmetry, more nbnd -> open_grid -> pw2wannier90 -> wannier90",
-              "      2. scf w/ symmetry, default nbnd -> nscf w/ symm, more nbnd -> open_grid",
-              "         -> pw2wannier90 -> wannier90"
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "pw2wannier90",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Pw2wannier90BaseWorkChain`."
-                },
-                {
-                  "name": "structure",
-                  "required": true,
-                  "valid_types": "StructureData",
-                  "info": "The input structure."
-                },
-                {
-                  "name": "wannier90",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Wannier90BaseWorkChain`."
-                },
-                {
-                  "name": "clean_workdir",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If True, work directories of all called calculation will be cleaned at the  ..."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "nscf",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwBaseWorkChain` for the NSCF calculation."
-                },
-                {
-                  "name": "open_grid",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `OpenGridBaseWorkChain`, if not specified the open_grid step ..."
-                },
-                {
-                  "name": "projwfc",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `ProjwfcBaseWorkChain`."
-                },
-                {
-                  "name": "scf",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwBaseWorkChain` for the SCF calculation."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "pw2wannier90",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "wannier90",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "wannier90_pp",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "nscf",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "open_grid",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "projwfc",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "scf",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 420,
-                  "message": "the scf PwBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 430,
-                  "message": "the nscf PwBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 440,
-                  "message": "the ProjwfcBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 450,
-                  "message": "the postproc Wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 460,
-                  "message": "the Pw2wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 470,
-                  "message": "the Wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 480,
-                  "message": "outputs sanity check failed"
-                },
-                {
-                  "status": 490,
-                  "message": "the OpenGridBaseWorkChain sub process failed"
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.workflows.open_grid:Wannier90OpenGridWorkChain"
-          },
-          "wannier90_workflows.optimize": {
-            "description": [
-              "Workchain to optimize dis_proj_min/max for projectability disentanglement."
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "pw2wannier90",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Pw2wannier90BaseWorkChain`."
-                },
-                {
-                  "name": "structure",
-                  "required": true,
-                  "valid_types": "StructureData",
-                  "info": "The input structure."
-                },
-                {
-                  "name": "wannier90",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Wannier90BaseWorkChain`."
-                },
-                {
-                  "name": "bands_kpoints",
-                  "required": false,
-                  "valid_types": "KpointsData, NoneType",
-                  "info": "Explicit kpoints to use for the wannier90 bands interpolation. If specified ..."
-                },
-                {
-                  "name": "bands_kpoints_distance",
-                  "required": false,
-                  "valid_types": "Float, NoneType",
-                  "info": "Minimum kpoints distance for seekpath to generate a list of kpoints along t ..."
-                },
-                {
-                  "name": "clean_workdir",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If True, work directories of all called calculation will be cleaned at the  ..."
-                },
-                {
-                  "name": "kpoint_path",
-                  "required": false,
-                  "valid_types": "KpointsData, NoneType",
-                  "info": "High symmetry kpoints to use for the wannier90 bands interpolation. If spec ..."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "nscf",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwBaseWorkChain` for the NSCF calculation."
-                },
-                {
-                  "name": "open_grid",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `OpenGridBaseWorkChain`, if not specified the open_grid step ..."
-                },
-                {
-                  "name": "optimize_bands_distance_threshold",
-                  "required": false,
-                  "valid_types": "Float, NoneType",
-                  "info": "If provided, during the iteration of dis_proj_min/max, if the bands distanc ..."
-                },
-                {
-                  "name": "optimize_disproj",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If True iterate dis_proj_min/max to find the best MLWFs for projectability  ..."
-                },
-                {
-                  "name": "optimize_disprojmax_range",
-                  "required": false,
-                  "valid_types": "List",
-                  "info": "The range to iterate dis_proj_min. `None` means disabling projectability di ..."
-                },
-                {
-                  "name": "optimize_disprojmin_range",
-                  "required": false,
-                  "valid_types": "List",
-                  "info": "The range to iterate dis_proj_max. `None` means disabling projectability di ..."
-                },
-                {
-                  "name": "optimize_reference_bands",
-                  "required": false,
-                  "valid_types": "BandsData, NoneType",
-                  "info": "If provided, during the iteration of dis_proj_min/max, the BandsData will b ..."
-                },
-                {
-                  "name": "optimize_spreads_imbalence_threshold",
-                  "required": false,
-                  "valid_types": "Float, NoneType",
-                  "info": "If provided, during the iteration of dis_proj_min/max, if the spreads imbal ..."
-                },
-                {
-                  "name": "projwfc",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `ProjwfcBaseWorkChain`."
-                },
-                {
-                  "name": "scf",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwBaseWorkChain` for the SCF calculation."
-                },
-                {
-                  "name": "separate_plotting",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If True separate the maximal localisation and the plotting of bands/Wannier ..."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "band_structure",
-                  "required": true,
-                  "valid_types": "BandsData",
-                  "info": "The Wannier interpolated band structure."
-                },
-                {
-                  "name": "pw2wannier90",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "wannier90",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "wannier90_pp",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "bands_distance",
-                  "required": false,
-                  "valid_types": "Float",
-                  "info": "Bands distances between reference bands and Wannier interpolated bands for  ..."
-                },
-                {
-                  "name": "nscf",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "open_grid",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "primitive_structure",
-                  "required": false,
-                  "valid_types": "StructureData",
-                  "info": "The normalized and primitivized structure for which the calculations are co ..."
-                },
-                {
-                  "name": "projwfc",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "scf",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "seekpath_parameters",
-                  "required": false,
-                  "valid_types": "Dict",
-                  "info": "The parameters used in the SeeKpath call to normalize the input or relaxed  ..."
-                },
-                {
-                  "name": "wannier90_optimal",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "wannier90_plot",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 420,
-                  "message": "the scf PwBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 430,
-                  "message": "the nscf PwBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 440,
-                  "message": "the ProjwfcBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 450,
-                  "message": "the postproc Wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 460,
-                  "message": "the Pw2wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 470,
-                  "message": "the Wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 480,
-                  "message": "outputs sanity check failed"
-                },
-                {
-                  "status": 490,
-                  "message": "the OpenGridBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 500,
-                  "message": "the Wannier90Calculation plotting sub process failed"
-                },
-                {
-                  "status": 501,
-                  "message": "All the trials on dis_proj_min/max have failed, cannot compare spreads"
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.workflows.optimize:Wannier90OptimizeWorkChain"
-          },
-          "wannier90_workflows.projwfcbands": {
-            "description": [
-              "WorkChain to compute QE projected band structure for a given structure."
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "bands",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwBaseWorkChain` for the BANDS calculation."
-                },
-                {
-                  "name": "projwfc",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `ProjwfcBaseWorkChain` for the projwfc.x calculation."
-                },
-                {
-                  "name": "scf",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwBaseWorkChain` for the SCF calculation."
-                },
-                {
-                  "name": "structure",
-                  "required": true,
-                  "valid_types": "StructureData",
-                  "info": "The inputs structure."
-                },
-                {
-                  "name": "bands_kpoints",
-                  "required": false,
-                  "valid_types": "KpointsData, NoneType",
-                  "info": "Explicit kpoints to use for the BANDS calculation. Specify either this or ` ..."
-                },
-                {
-                  "name": "bands_kpoints_distance",
-                  "required": false,
-                  "valid_types": "Float, NoneType",
-                  "info": "Minimum kpoints distance for the BANDS calculation. Specify either this or  ..."
-                },
-                {
-                  "name": "clean_workdir",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If `True`, work directories of all called calculation will be cleaned at th ..."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "nbands_factor",
-                  "required": false,
-                  "valid_types": "Float, NoneType",
-                  "info": "The number of bands for the BANDS calculation is that used for the SCF mult ..."
-                },
-                {
-                  "name": "relax",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwRelaxWorkChain`, if not specified at all, the relaxation  ..."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "band_parameters",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": "The output parameters of the BANDS `PwBaseWorkChain`."
-                },
-                {
-                  "name": "band_structure",
-                  "required": true,
-                  "valid_types": "BandsData",
-                  "info": "The computed band structure."
-                },
-                {
-                  "name": "projwfc",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "scf_parameters",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": "The output parameters of the SCF `PwBaseWorkChain`."
-                },
-                {
-                  "name": "primitive_structure",
-                  "required": false,
-                  "valid_types": "StructureData",
-                  "info": "The normalized and primitivized structure for which the bands are computed."
-                },
-                {
-                  "name": "seekpath_parameters",
-                  "required": false,
-                  "valid_types": "Dict",
-                  "info": "The parameters used in the SeeKpath call to normalize the input or relaxed  ..."
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 201,
-                  "message": "Cannot specify both `nbands_factor` and `bands.pw.parameters.SYSTEM.nbnd`."
-                },
-                {
-                  "status": 202,
-                  "message": "Cannot specify both `bands_kpoints` and `bands_kpoints_distance`."
-                },
-                {
-                  "status": 401,
-                  "message": "The PwRelaxWorkChain sub process failed"
-                },
-                {
-                  "status": 402,
-                  "message": "The scf PwBasexWorkChain sub process failed"
-                },
-                {
-                  "status": 403,
-                  "message": "The bands PwBasexWorkChain sub process failed"
-                },
-                {
-                  "status": 404,
-                  "message": "The ProjwfcBaseWorkChain sub process failed"
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.workflows.projwfcbands:ProjwfcBandsWorkChain"
-          },
-          "wannier90_workflows.split": {
-            "description": [
-              "Workchain to split valence+conduction into two calculations for val and cond, respectively."
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "clean_workdir",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If True, work directories of all called calculation will be cleaned at the  ..."
-                },
-                {
-                  "name": "cond",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Wannier90BaseWorkChain` for the cond Wannierization."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "split",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Wannier90SplitCalculation`."
-                },
-                {
-                  "name": "val",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Wannier90BaseWorkChain` for the val Wannierization."
-                },
-                {
-                  "name": "valcond",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Wannier90OptimizeWorkChain` for the val+cond Wannierization ..."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "bands_distance",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "cond",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "split",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "val",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "valcond",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 500,
-                  "message": "All the trials on dis_proj_min/max have failed, cannot compare bands distance"
-                },
-                {
-                  "status": 501,
-                  "message": "the split calculation has failed"
-                },
-                {
-                  "status": 502,
-                  "message": "the valence Wannier90Calculation has failed"
-                },
-                {
-                  "status": 503,
-                  "message": "the conduction Wannier90Calculation has failed"
-                },
-                {
-                  "status": 520,
-                  "message": "All the orbitals are occupied, cannot split into valence and conduction"
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.workflows.split:Wannier90SplitWorkChain"
-          },
-          "wannier90_workflows.wannier90": {
-            "description": [
-              "Workchain to obtain maximally localised Wannier functions (MLWF).",
-              "",
-              "    Run the following steps:",
-              "        scf -> nscf -> projwfc -> wannier90 postproc -> pw2wannier90 -> wannier90"
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "pw2wannier90",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Pw2wannier90BaseWorkChain`."
-                },
-                {
-                  "name": "structure",
-                  "required": true,
-                  "valid_types": "StructureData",
-                  "info": "The input structure."
-                },
-                {
-                  "name": "wannier90",
-                  "required": true,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `Wannier90BaseWorkChain`."
-                },
-                {
-                  "name": "clean_workdir",
-                  "required": false,
-                  "valid_types": "Bool",
-                  "info": "If True, work directories of all called calculation will be cleaned at the  ..."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "nscf",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwBaseWorkChain` for the NSCF calculation."
-                },
-                {
-                  "name": "projwfc",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `ProjwfcBaseWorkChain`."
-                },
-                {
-                  "name": "scf",
-                  "required": false,
-                  "valid_types": "Data",
-                  "info": "Inputs for the `PwBaseWorkChain` for the SCF calculation."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "pw2wannier90",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "wannier90",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "wannier90_pp",
-                  "required": true,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "nscf",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "projwfc",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "scf",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 420,
-                  "message": "the scf PwBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 430,
-                  "message": "the nscf PwBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 440,
-                  "message": "the ProjwfcBaseWorkChain sub process failed"
-                },
-                {
-                  "status": 450,
-                  "message": "the postproc Wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 460,
-                  "message": "the Pw2wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 470,
-                  "message": "the Wannier90BaseWorkChain sub process failed"
-                },
-                {
-                  "status": 480,
-                  "message": "outputs sanity check failed"
-                }
-              ]
-            },
-            "class": "aiida_wannier90_workflows.workflows.wannier90:Wannier90WorkChain"
-          }
+          "wannier90_workflows.bands": "aiida_wannier90_workflows.workflows.bands:Wannier90BandsWorkChain",
+          "wannier90_workflows.base.open_grid": "aiida_wannier90_workflows.workflows.base.open_grid:OpenGridBaseWorkChain",
+          "wannier90_workflows.base.projwfc": "aiida_wannier90_workflows.workflows.base.projwfc:ProjwfcBaseWorkChain",
+          "wannier90_workflows.base.pw2wannier90": "aiida_wannier90_workflows.workflows.base.pw2wannier90:Pw2wannier90BaseWorkChain",
+          "wannier90_workflows.base.wannier90": "aiida_wannier90_workflows.workflows.base.wannier90:Wannier90BaseWorkChain",
+          "wannier90_workflows.open_grid": "aiida_wannier90_workflows.workflows.open_grid:Wannier90OpenGridWorkChain",
+          "wannier90_workflows.optimize": "aiida_wannier90_workflows.workflows.optimize:Wannier90OptimizeWorkChain",
+          "wannier90_workflows.projwfcbands": "aiida_wannier90_workflows.workflows.projwfcbands:ProjwfcBandsWorkChain",
+          "wannier90_workflows.split": "aiida_wannier90_workflows.workflows.split:Wannier90SplitWorkChain",
+          "wannier90_workflows.wannier90": "aiida_wannier90_workflows.workflows.wannier90:Wannier90WorkChain"
         },
         "console_scripts": {
           "aiida-wannier90-workflows": "aiida_wannier90_workflows.cli:cmd_root"
@@ -31396,7 +29837,7 @@
       "name": "Calculations",
       "colorclass": "blue",
       "num_entries": 54,
-      "total_num": 131
+      "total_num": 132
     },
     {
       "name": "Parsers",
