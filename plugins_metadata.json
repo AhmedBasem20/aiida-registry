@@ -11844,7 +11844,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 213,
+      "commits_count": 209,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -13425,7 +13425,7 @@
           }
         }
       },
-      "commits_count": 78,
+      "commits_count": 80,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -16511,7 +16511,7 @@
           }
         }
       },
-      "commits_count": 58,
+      "commits_count": 52,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -23908,7 +23908,7 @@
           "core.shell": "aiida_shell.parsers.shell:ShellParser"
         }
       },
-      "commits_count": 47,
+      "commits_count": 46,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -23995,7 +23995,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 16,
+      "commits_count": 14,
       "development_status": "planning",
       "summaryinfo": [
         {
