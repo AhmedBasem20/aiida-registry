@@ -15148,7 +15148,7 @@
           "crystal.aiida": "mpds_aiida.workflows.aiida:AiidaStructureWorkchain"
         }
       },
-      "commits_count": 13,
+      "commits_count": 14,
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -16511,7 +16511,7 @@
           }
         }
       },
-      "commits_count": 52,
+      "commits_count": 49,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -23995,7 +23995,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 14,
+      "commits_count": 4,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -29613,33 +29613,10 @@
         "version": "1.0.10"
       },
       "aiida_version": null,
-      "entry_points": {
-        "console_scripts": {
-          "yascheduler": "yascheduler.utils:daemonize",
-          "yasubmit": "yascheduler.utils:submit",
-          "yastatus": "yascheduler.utils:check_status",
-          "yanodes": "yascheduler.utils:show_nodes",
-          "yasetnode": "yascheduler.utils:manage_node",
-          "yainit": "yascheduler.utils:init"
-        },
-        "aiida.schedulers": {
-          "yascheduler": "yascheduler.aiida_plugin:YaScheduler"
-        }
-      },
-      "commits_count": 123,
+      "entry_points": {},
+      "commits_count": 131,
       "development_status": "beta",
-      "summaryinfo": [
-        {
-          "colorclass": "purple",
-          "text": "Console scripts",
-          "count": 6
-        },
-        {
-          "colorclass": "orange",
-          "text": "Other (Schedulers)",
-          "count": 1
-        }
-      ],
+      "summaryinfo": [],
       "pip_install_cmd": "pip install yascheduler"
     },
     "aiida-z2pack": {
@@ -29860,15 +29837,15 @@
     {
       "name": "Console scripts",
       "colorclass": "purple",
-      "num_entries": 16,
-      "total_num": 27
+      "num_entries": 15,
+      "total_num": 21
     },
     {
       "name": "Other",
       "tooltip": "Aenet potentials, Calculations importers, Calculations monitors, ...",
       "colorclass": "orange",
-      "num_entries": 26,
-      "total_num": 99
+      "num_entries": 25,
+      "total_num": 98
     }
   ],
   "status_dict": {
