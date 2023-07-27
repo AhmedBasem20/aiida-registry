@@ -11844,7 +11844,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 209,
+      "commits_count": 204,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -16511,7 +16511,7 @@
           }
         }
       },
-      "commits_count": 49,
+      "commits_count": 48,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -23318,7 +23318,7 @@
           "aiida-quantumespresso": "aiida_quantumespresso.cli:cmd_root"
         }
       },
-      "commits_count": 97,
+      "commits_count": 96,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -23995,7 +23995,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 4,
+      "commits_count": 3,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -29614,7 +29614,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 131,
+      "commits_count": 132,
       "development_status": "beta",
       "summaryinfo": [],
       "pip_install_cmd": "pip install yascheduler"
