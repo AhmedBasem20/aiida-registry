@@ -8765,7 +8765,7 @@
           "dataframe.frame": "aiida_dataframe.data.dataframe:PandasFrameData"
         }
       },
-      "commits_count": 27,
+      "commits_count": 24,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -29356,7 +29356,7 @@
           "aiida-wannier90-workflows": "aiida_wannier90_workflows.cli:cmd_root"
         }
       },
-      "commits_count": 43,
+      "commits_count": 42,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -29712,15 +29712,14 @@
       "documentation_url": "https://github.com/tilde-lab/yascheduler",
       "entry_point_prefix": "yascheduler",
       "pip_url": "yascheduler",
+      "plugin_info": "https://raw.githubusercontent.com/tilde-lab/yascheduler/master/setup.json",
       "name": "aiida-yascheduler",
       "package_name": "aiida_yascheduler",
       "hosted_on": "github.com",
       "metadata": {
         "description": "Yet another computing scheduler and cloud orchestration engine",
-        "author": "Sergey Korolev, Evgeny Blokhin, Andrey Sobolev",
-        "author_email": "eb@tilde.pro",
-        "license": "MIT",
-        "home_page": "https://github.com/tilde-lab/yascheduler",
+        "author": "Andrey Sobolev",
+        "author_email": "Evgeny Blokhin <eb@tilde.pro>, Sergei Korolev <knopki@duck.com>",
         "classifiers": [
           "Development Status :: 4 - Beta",
           "Framework :: AiiDA",
@@ -29728,6 +29727,7 @@
           "License :: OSI Approved :: MIT License",
           "Programming Language :: Python :: 3",
           "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
           "Programming Language :: Python :: 3.7",
           "Programming Language :: Python :: 3.8",
           "Programming Language :: Python :: 3.9",
@@ -29736,13 +29736,36 @@
           "Topic :: Scientific/Engineering :: Physics",
           "Topic :: Software Development :: Libraries :: Python Modules"
         ],
-        "version": "1.0.10"
+        "version": "1.2.0"
       },
       "aiida_version": null,
-      "entry_points": {},
+      "entry_points": {
+        "aiida.schedulers": {
+          "yascheduler": "yascheduler.aiida_plugin:YaScheduler"
+        },
+        "console_scripts": {
+          "yainit": "yascheduler.utils:init",
+          "yanodes": "yascheduler.utils:show_nodes",
+          "yascheduler": "yascheduler.utils:daemonize",
+          "yasetnode": "yascheduler.utils:manage_node",
+          "yastatus": "yascheduler.utils:check_status",
+          "yasubmit": "yascheduler.utils:submit"
+        }
+      },
       "commits_count": 145,
       "development_status": "beta",
-      "summaryinfo": [],
+      "summaryinfo": [
+        {
+          "colorclass": "purple",
+          "text": "Console scripts",
+          "count": 6
+        },
+        {
+          "colorclass": "orange",
+          "text": "Other (Schedulers)",
+          "count": 1
+        }
+      ],
       "pip_install_cmd": "pip install yascheduler"
     },
     "aiida-z2pack": {
@@ -29963,15 +29986,15 @@
     {
       "name": "Console scripts",
       "colorclass": "purple",
-      "num_entries": 15,
-      "total_num": 21
+      "num_entries": 16,
+      "total_num": 27
     },
     {
       "name": "Other",
       "tooltip": "Aenet potentials, Calculations importers, Calculations monitors, ...",
       "colorclass": "orange",
-      "num_entries": 25,
-      "total_num": 98
+      "num_entries": 26,
+      "total_num": 99
     }
   ],
   "status_dict": {
