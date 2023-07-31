@@ -11844,7 +11844,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 204,
+      "commits_count": 203,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -16637,7 +16637,7 @@
           }
         }
       },
-      "commits_count": 44,
+      "commits_count": 42,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -29390,7 +29390,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 4,
+      "commits_count": 3,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -29752,7 +29752,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 127,
+      "commits_count": 102,
       "development_status": "beta",
       "summaryinfo": [
         {
