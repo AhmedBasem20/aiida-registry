@@ -7099,7 +7099,7 @@
           "crystal_dft": "aiida_crystal_dft.cli.basis:basis_set"
         }
       },
-      "commits_count": 20,
+      "commits_count": 19,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -13551,7 +13551,7 @@
           }
         }
       },
-      "commits_count": 89,
+      "commits_count": 99,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -13780,7 +13780,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 100,
+      "commits_count": 98,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -15274,7 +15274,7 @@
           "crystal.aiida": "mpds_aiida.workflows.aiida:AiidaStructureWorkchain"
         }
       },
-      "commits_count": 10,
+      "commits_count": 9,
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -15585,7 +15585,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 19,
+      "commits_count": 21,
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/atztogo/aiida-nims-scheduler"
     },
@@ -29752,7 +29752,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 102,
+      "commits_count": 94,
       "development_status": "beta",
       "summaryinfo": [
         {
