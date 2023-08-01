@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { createContext, useState, useContext } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Logo from './assets/logo.svg'
@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Markdown from 'markdown-to-jsx';
+import Fuse from 'fuse.js'
 
 const entrypointtypes = jsonData["entrypointtypes"]
 const globalsummary = jsonData["globalsummary"]
@@ -22,7 +23,29 @@ const status_dict = jsonData["status_dict"]
 const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
+const SearchContext = createContext();
+
+const useSearchContext = () => useContext(SearchContext);
+
+const SearchContextProvider = ({ children }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  return (
+    <SearchContext.Provider value={{ searchQuery, setSearchQuery }}>
+      {children}
+    </SearchContext.Provider>
+  );
+};
+
+let plugins_index = []
+
+Object.entries(plugins).map(([key, value]) => (
+  plugins_index.push(value)
+))
+
+
 function App() {
+  
 
   return (
     <>
@@ -34,13 +57,14 @@ function App() {
         <a href="http://github.com/aiidateam/aiida-registry" style={{ color: '#999' }}>[View on GitHub/register your package]</a>
       </p>
     </header>
-
+    <SearchContextProvider>
     <div id='app-body'>
       <Routes>
         <Route path="/" element={<MainIndex />} />
         <Route path="/:key" element={<Details />} />
       </Routes>
     </div>
+    </SearchContextProvider>
     <footer className="footer">
       <hr />
       The official <a href="http://aiidateam.github.io/aiida-registry">registry</a> of <a href="http://www.aiida.net">AiiDA</a> plugins.
@@ -55,10 +79,96 @@ function App() {
     </>
   );
 }
+function Search() {
+  const { searchQuery, setSearchQuery } = useSearchContext();
+  const handleSearch = (searchQuery) => {
+    setSearchQuery(searchQuery);
+  }
+  const fuse = new Fuse(plugins_index, {
+    keys: [ 'name', 'metadata.description'],
+    includeScore: true,
+    ignoreLocation: true,
+    threshold: 0.1
+  })
+  console.log(fuse.search(searchQuery))
+  let searchRes = fuse.search(searchQuery)
+  return (
+    <>
+    <div className="search">
+      <form className="search-form">
+        <input type="text" placeholder="Search for books, authors, categories and more.." value={searchQuery} label = "search" onChange={(e) => handleSearch(e.target.value)} />
+      </form>
+    </div>
+    <ul>
+        {searchRes.map((value) => (
+          <PluginsList pkey= {value.item.name} value={value.item} />
+        ))}
+      </ul>
+    </>
+  )
+}
 
+function PluginsList({pkey, value}) {
+  const key = pkey
+  return(
+    <div className='submenu-entry' key={key}>
+    <Link to={`/${key}`}><h2 style={{display:'inline'}}>{key} </h2></Link>
+    {value.is_installable === "True" && (
+      <div className='classbox' style={{backgroundColor:'transparent'}}>
+      <p style={{color:'green', fontSize:'25px'}}>&#10003;</p>
+      <span className='tooltiptext'>Plugin successfully installed</span>
+      </div>
+    )}
+    <p className="currentstate">
+    <img className="svg-badge" src= {`${currentPath}${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />&nbsp;
+    {value.aiida_version && (
+      <img
+          className="svg-badge"
+          title={`Compatible with aiida-core ${value.aiida_version}`}
+          src={`https://img.shields.io/badge/AiiDA-${value.aiida_version}-007ec6.svg?logo=${base64Icon}`}
+        />
+    )}
+    </p>
+
+    <p>{value.metadata.description}</p>
+    <ul className="plugin-info">
+      <li>
+    <a href={value.code_home}>Source Code</a>
+      </li>
+    {value.documentation_url && (
+      <li>
+      <a href={value.documentation_url}>Documentation</a>
+      </li>
+    )}
+    <li>
+    <Link to={`/${key}`}>Plugin details</Link>
+    </li>
+
+    </ul>
+
+    {value.summaryinfo && (
+      <>
+        <p className="summaryinfo">
+        {value.summaryinfo.map((summaryinfoelem) => (
+          <span className="badge" key={summaryinfoelem.text}>
+            <span className={`badge-left ${summaryinfoelem.colorclass}`}>
+              {summaryinfoelem.text}
+            </span>
+            <span className="badge-right">{summaryinfoelem.count}</span>
+          </span>
+        ))}
+        </p>
+      </>
+    )}
+
+  </div>
+  )
+}
 function MainIndex() {
+  const { searchQuery, setSearchQuery } = useSearchContext();
   const [sortOption, setSortOption] = useState('alpha');
   const [sortedData, setSortedData] = useState(plugins);
+  
   const handleSort = (option) => {
     setSortOption(option);
 
@@ -82,9 +192,9 @@ function MainIndex() {
 
     setSortedData(sortedPlugins);
   };
+
   return (
     <main className='fade-enter'>
-
     <h2>Registered plugin packages: {length}</h2>
     <div className='globalsummary-box'>
       <div style={{display: 'table'}}>
@@ -105,6 +215,7 @@ function MainIndex() {
       ))}
       </div>
     </div>
+
     <div id='entrylist'>
       <h1 style={{display: 'inline'}}>
         Package list
@@ -120,67 +231,14 @@ function MainIndex() {
             </Select>
           </FormControl>
         </Box>
-
-      {Object.entries(sortedData).map(([key, value]) => (
-        <div className='submenu-entry' key={key}>
-          <Link to={`/${key}`}><h2 style={{display:'inline'}}>{key} </h2></Link>
-          {value.is_installable === "True" && (
-            <div className='classbox' style={{backgroundColor:'transparent'}}>
-            <p style={{color:'green', fontSize:'25px'}}>&#10003;</p>
-            <span className='tooltiptext'>Plugin successfully installed</span>
-            </div>
-          )}
-          <p className="currentstate">
-          <img className="svg-badge" src= {`${currentPath}${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />&nbsp;
-          {value.aiida_version && (
-            <img
-                className="svg-badge"
-                title={`Compatible with aiida-core ${value.aiida_version}`}
-                src={`https://img.shields.io/badge/AiiDA-${value.aiida_version}-007ec6.svg?logo=${base64Icon}`}
-              />
-          )}
-          {sortOption === 'commits' &&
-          <img
-                className="svg-badge"
-                style={{padding:'3px'}}
-                src={`https://img.shields.io/badge/Yearly%20Commits-${value.commits_count}-007ec6.svg`}
-              />
-          }
-          </p>
-
-          <p>{value.metadata.description}</p>
-          <ul className="plugin-info">
-            <li>
-          <a href={value.code_home}>Source Code</a>
-            </li>
-          {value.documentation_url && (
-            <li>
-            <a href={value.documentation_url}>Documentation</a>
-            </li>
-          )}
-          <li>
-          <Link to={`/${key}`}>Plugin details</Link>
-          </li>
-
-          </ul>
-
-          {value.summaryinfo && (
-            <>
-              <p className="summaryinfo">
-              {value.summaryinfo.map((summaryinfoelem) => (
-                <span className="badge" key={summaryinfoelem.text}>
-                  <span className={`badge-left ${summaryinfoelem.colorclass}`}>
-                    {summaryinfoelem.text}
-                  </span>
-                  <span className="badge-right">{summaryinfoelem.count}</span>
-                </span>
-              ))}
-              </p>
-            </>
-          )}
-
-        </div>
-      ))}
+      <Search />
+      {searchQuery === "" && (
+        <>
+        {Object.entries(sortedData).map(([key, value]) => (
+          <PluginsList pkey={key} value={value}/>
+        ))}
+        </>
+      )}
     </div>
     </main>
   );
