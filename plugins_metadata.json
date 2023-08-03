@@ -6304,7 +6304,7 @@
           }
         }
       },
-      "commits_count": 17,
+      "commits_count": 18,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -8765,7 +8765,7 @@
           "dataframe.frame": "aiida_dataframe.data.dataframe:PandasFrameData"
         }
       },
-      "commits_count": 23,
+      "commits_count": 20,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -13780,7 +13780,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 98,
+      "commits_count": 95,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -29752,7 +29752,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 88,
+      "commits_count": 79,
       "development_status": "beta",
       "summaryinfo": [
         {
