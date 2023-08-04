@@ -5902,7 +5902,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 340,
+      "commits_count": 337,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -8765,7 +8765,7 @@
           "dataframe.frame": "aiida_dataframe.data.dataframe:PandasFrameData"
         }
       },
-      "commits_count": 20,
+      "commits_count": 16,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -11844,7 +11844,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 203,
+      "commits_count": 202,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -23821,7 +23821,7 @@
           }
         }
       },
-      "commits_count": 1,
+      "commits_count": 0,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -29752,7 +29752,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 79,
+      "commits_count": 76,
       "development_status": "beta",
       "summaryinfo": [
         {
