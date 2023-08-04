@@ -22,7 +22,7 @@ const plugins  = jsonData["plugins"]
 const status_dict = jsonData["status_dict"]
 const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
-
+let sortedData = plugins
 const SearchContext = createContext();
 
 const useSearchContext = () => useContext(SearchContext);
@@ -85,23 +85,41 @@ function Search() {
     setSearchQuery(searchQuery);
   }
   const fuse = new Fuse(plugins_index, {
-    keys: [ 'name', 'metadata.description'],
+    keys: [ 'name', 'metadata.description', 'entry_point_prefix', 'metadata.author'],
     includeScore: true,
     ignoreLocation: true,
-    threshold: 0.1
+    threshold: 0.2
   })
   console.log(fuse.search(searchQuery))
   let searchRes = fuse.search(searchQuery)
+  const suggestions = searchRes.map((item) => item.item.name);
+  const resultObject = {};
+
+  searchRes.forEach(item => {
+    resultObject[item.item.name] = item.item;
+  });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sortedData = resultObject;
+    console.log(sortedData);
+    
+    
+  };
+  
   return (
     <>
     <div className="search">
       <form className="search-form">
-        <input type="text" placeholder="Search for books, authors, categories and more.." value={searchQuery} label = "search" onChange={(e) => handleSearch(e.target.value)} />
+        <input type="text" placeholder="Search for plugins" value={searchQuery} label = "search" onChange={(e) => handleSearch(e.target.value)} />
+        <button style={{fontSize:'20px'}} onClick={(e) => {handleSubmit(e);}}><i className="fa fa-search"></i></button>
       </form>
     </div>
-    <ul>
-        {searchRes.map((value) => (
-          <PluginsList pkey= {value.item.name} value={value.item} />
+    {/* Display the list of suggestions */}
+    <ul className="suggestions-list">
+        {suggestions.map((suggestion) => (
+          <Link to={`/${suggestion}`}><li key={suggestion} className="suggestion-item">
+            {suggestion}
+          </li></Link>
         ))}
       </ul>
     </>
@@ -167,11 +185,9 @@ function PluginsList({pkey, value}) {
 function MainIndex() {
   const { searchQuery, setSearchQuery } = useSearchContext();
   const [sortOption, setSortOption] = useState('alpha');
-  const [sortedData, setSortedData] = useState(plugins);
-  
+  console.log("MAIN INDEX TRIGGERED!!!!")
   const handleSort = (option) => {
     setSortOption(option);
-
 
     let sortedPlugins;
     if (option === 'commits') {
@@ -190,8 +206,11 @@ function MainIndex() {
       sortedPlugins = plugins;
     }
 
-    setSortedData(sortedPlugins);
+    sortedData = sortedPlugins
   };
+  if (searchQuery == "") {
+    sortedData = plugins
+  }
 
   return (
     <main className='fade-enter'>
@@ -217,10 +236,14 @@ function MainIndex() {
     </div>
 
     <div id='entrylist'>
-      <h1 style={{display: 'inline'}}>
+      <div style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
+      <h1 style={{minHeight:'50px', padding:'15px 8px', display:'flex', flexDirection:'column'}}>
         Package list
     </h1>
-        <Box sx={{ minWidth: 120 }} style={{display:'inline', padding:'20px'}}>
+    <div style={{minHeight:'50px', padding:'15px 8px', borderRadius:'0 0 0 0', flex:'1'}}>
+      <Search />
+      </div>
+        <Box sx={{ minWidth: 120 }} style={{minHeight:'50px', minWidth:'600px', padding:'15px 8px', display:'flex'}}>
           <FormControl style={{width:'25%'}}>
             <InputLabel id="demo-simple-select-label">Sort</InputLabel>
             <Select
@@ -231,14 +254,11 @@ function MainIndex() {
             </Select>
           </FormControl>
         </Box>
-      <Search />
-      {searchQuery === "" && (
-        <>
+        </div>
+
         {Object.entries(sortedData).map(([key, value]) => (
           <PluginsList pkey={key} value={value}/>
         ))}
-        </>
-      )}
     </div>
     </main>
   );
