@@ -402,3 +402,73 @@ ul.plugin-info li:before {
 content: "→";
 padding-right: 5px;
 }
+
+
+  /* ===========================
+    ====== Medua Query for Search Box ====== 
+    =========================== */
+  
+  @media only screen and (min-width : 150px) and (max-width : 780px)
+  {
+    .search
+    {
+      width: 95%;
+      margin: 0 auto;
+    }
+  
+  }
+
+  /* Add this CSS to your stylesheets */
+.search {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.search-form {
+  display: flex;
+  min-height: 50px;
+}
+
+input[type='text'] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+}
+
+/* Styles for the suggestions list */
+.suggestions-list {
+  position: absolute;
+  z-index: 1; /* Set a higher z-index to make the list appear on top of other content */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px; /* Add a max-height to limit the suggestions' height */
+  overflow-y: auto; /* Enable vertical scrolling if there are too many suggestions */
+
+  /* Styles to make the suggestions solid and hide the back divs */
+  background-color: #fff; /* Set the background color of the suggestions */
+  background-clip: padding-box; /* Ensure the background color doesn't extend under the borders */
+  backdrop-filter: blur(5px); /* Add a blur effect to the background (optional, may not work on all browsers) */
+  border: 1px solid #ccc; /* Add a border to separate the suggestions from the input */
+  border-radius: 4px; /* Add border radius for a rounded look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a box shadow for depth */
+}
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none; /* Remove the border on the last item to avoid double borders */
+}
+
+.suggestion-item:hover {
+  background-color: #f2f2f2;
+}
+
+.suggestion-item:active {
+  background-color: #e0e0e0;
+}
