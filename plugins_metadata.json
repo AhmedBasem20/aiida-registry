@@ -8765,7 +8765,7 @@
           "dataframe.frame": "aiida_dataframe.data.dataframe:PandasFrameData"
         }
       },
-      "commits_count": 16,
+      "commits_count": 13,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -13780,7 +13780,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 95,
+      "commits_count": 93,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
