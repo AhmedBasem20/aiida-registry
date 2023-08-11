@@ -15569,7 +15569,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 26,
+      "commits_count": 29,
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/nanotech-empa/aiida-nanotech-empa"
     },
@@ -23444,7 +23444,7 @@
           "aiida-quantumespresso": "aiida_quantumespresso.cli:cmd_root"
         }
       },
-      "commits_count": 96,
+      "commits_count": 93,
       "development_status": "stable",
       "summaryinfo": [
         {
