@@ -8701,7 +8701,7 @@
           "potcar": "aiida_cusp.cli.potcar_cmd:potcar"
         }
       },
-      "commits_count": 70,
+      "commits_count": 68,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -16096,7 +16096,7 @@
           "quantumespresso.ocv.ocvwc": "aiida_open_circuit_voltage.workflows.workchain:OCVWorkChain"
         }
       },
-      "commits_count": 28,
+      "commits_count": 27,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -29390,7 +29390,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 3,
+      "commits_count": 1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
