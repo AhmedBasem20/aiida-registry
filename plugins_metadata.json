@@ -15274,7 +15274,7 @@
           "crystal.aiida": "mpds_aiida.workflows.aiida:AiidaStructureWorkchain"
         }
       },
-      "commits_count": 9,
+      "commits_count": 6,
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -17717,7 +17717,7 @@
           "Programming Language :: Python :: 3.9",
           "Topic :: Scientific/Engineering"
         ],
-        "version": "0.4.0"
+        "version": "0.4.1"
       },
       "aiida_version": ">=2.3,<3.0",
       "entry_points": {
@@ -17801,6 +17801,18 @@
                   "required": false,
                   "valid_types": "SinglefileData",
                   "info": "Computed fcidump files."
+                },
+                {
+                  "name": "hessian",
+                  "required": false,
+                  "valid_types": "ArrayData",
+                  "info": "The computed Hessian."
+                },
+                {
+                  "name": "model",
+                  "required": false,
+                  "valid_types": "PickledData",
+                  "info": "The model in serialized form. Can be deserialized and used without having t ..."
                 },
                 {
                   "name": "parameters",
@@ -17962,6 +17974,18 @@
                   "info": "Computed fcidump files."
                 },
                 {
+                  "name": "hessian",
+                  "required": false,
+                  "valid_types": "ArrayData",
+                  "info": "The computed Hessian."
+                },
+                {
+                  "name": "model",
+                  "required": false,
+                  "valid_types": "PickledData",
+                  "info": "The model in serialized form. Can be deserialized and used without having t ..."
+                },
+                {
                   "name": "parameters",
                   "required": false,
                   "valid_types": "Dict",
@@ -18033,7 +18057,7 @@
           }
         }
       },
-      "commits_count": 64,
+      "commits_count": 66,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -29752,7 +29776,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 74,
+      "commits_count": 64,
       "development_status": "beta",
       "summaryinfo": [
         {
