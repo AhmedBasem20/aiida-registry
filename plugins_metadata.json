@@ -18087,7 +18087,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 59,
+      "commits_count": 56,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -29776,7 +29776,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 64,
+      "commits_count": 61,
       "development_status": "beta",
       "summaryinfo": [
         {
