@@ -2984,7 +2984,7 @@
           "castep.mock": "aiida_castep.cmdline.mock_castep:mock_castep"
         }
       },
-      "commits_count": 10,
+      "commits_count": 9,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -5574,7 +5574,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 334,
+      "commits_count": 335,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -8437,7 +8437,7 @@
           "dataframe.frame": "aiida_dataframe.data.dataframe:PandasFrameData"
         }
       },
-      "commits_count": -1,
+      "commits_count": 13,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -13458,7 +13458,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 90,
+      "commits_count": 86,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -16315,7 +16315,7 @@
           }
         }
       },
-      "commits_count": 42,
+      "commits_count": 41,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -17765,7 +17765,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 56,
+      "commits_count": 55,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
