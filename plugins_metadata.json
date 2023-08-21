@@ -2202,7 +2202,7 @@
           "gromacs.setup": "aiida_gromacs.workflows.simsetup:SetupWorkChain"
         }
       },
-      "commits_count": 105,
+      "commits_count": 116,
       "development_status": "alpha",
       "summaryinfo": [
         {
