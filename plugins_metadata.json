@@ -1064,7 +1064,7 @@
           "cp2k.base": "aiida_cp2k.workchains:Cp2kBaseWorkChain"
         }
       },
-      "commits_count": 19,
+      "commits_count": 20,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -2435,7 +2435,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 86,
+      "commits_count": 79,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr"
     },
@@ -2787,7 +2787,7 @@
       "package_name": "aiida_nwchem",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2022-11-03",
+        "release_date": "2023-08-22",
         "description": "The official AiiDA plugin for NWChem",
         "author_email": "The AiiDA team <developers@aiida.net>",
         "classifiers": [
@@ -2802,7 +2802,7 @@
           "Programming Language :: Python :: 3.9",
           "Topic :: Scientific/Engineering"
         ],
-        "version": "3.0.0"
+        "version": "3.0.1"
       },
       "aiida_version": ">=2.0,<3.0",
       "entry_points": {
@@ -2817,7 +2817,7 @@
           "nwchem.base": "aiida_nwchem.workflows.base:NwchemBaseWorkChain"
         }
       },
-      "commits_count": 21,
+      "commits_count": 22,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -3270,7 +3270,7 @@
           "aiida-pseudo": "aiida_pseudo.cli:cmd_root"
         }
       },
-      "commits_count": 24,
+      "commits_count": 25,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -3413,7 +3413,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 55,
+      "commits_count": 49,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -4761,7 +4761,7 @@
           "yambo.yambo": "aiida_yambo.parsers.parsers:YamboParser"
         }
       },
-      "commits_count": 59,
+      "commits_count": 79,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -4887,7 +4887,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 56,
+      "commits_count": 54,
       "development_status": "beta",
       "summaryinfo": [
         {
