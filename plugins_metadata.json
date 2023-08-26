@@ -3720,25 +3720,27 @@
       "code_home": "https://github.com/yakutovicha/aiida-raspa",
       "entry_point_prefix": "raspa",
       "pip_url": "aiida-raspa",
+      "plugin_info": "https://raw.github.com/yakutovicha/aiida-raspa/master/setup.json",
       "name": "aiida-raspa",
       "package_name": "aiida_raspa",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2020-09-08",
+        "release_date": "2023-08-26",
         "description": "AiiDA plugin for RASPA code",
-        "author": "Aliaksandr Yakutovich",
-        "author_email": "aliaksandr.yakutovich@epfl.ch",
-        "license": "MIT License",
-        "home_page": "https://github.com/yakutovicha/aiida-raspa",
+        "author_email": "Aliaksandr Yakutovich <aliaksandr.yakutovich@epfl.ch>, Miriam Pougin <miriam.pougin@epfl.ch>",
         "classifiers": [
           "Development Status :: 5 - Production/Stable",
           "Framework :: AiiDA",
           "License :: OSI Approved :: MIT License",
-          "Programming Language :: Python :: 3"
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9"
         ],
-        "version": "1.2.0"
+        "version": "2.0.0"
       },
-      "aiida_version": null,
+      "aiida_version": ">=2.3,<3.0",
       "entry_points": {
         "aiida.calculations": {
           "raspa": "aiida_raspa.calculations:RaspaCalculation"
@@ -3750,7 +3752,7 @@
           "raspa.base": "aiida_raspa.workchains:RaspaBaseWorkChain"
         }
       },
-      "commits_count": 0,
+      "commits_count": 2,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -4550,7 +4552,7 @@
           "vibroscopy.spectra.iraman": "aiida_vibroscopy.workflows.spectra.iraman:IRamanSpectraWorkChain"
         }
       },
-      "commits_count": 68,
+      "commits_count": 69,
       "development_status": "beta",
       "summaryinfo": [
         {
