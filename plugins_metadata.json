@@ -1409,51 +1409,12 @@
       "name": "aiida-ddec",
       "package_name": "aiida_ddec",
       "hosted_on": "github.com",
-      "metadata": {
-        "author": "Aliaksandr Yakutovich",
-        "author_email": "aliaksandr.yakutovich@epfl.ch",
-        "version": "1.1.0",
-        "description": "AiiDA plugin for DDEC code",
-        "classifiers": [
-          "License :: OSI Approved :: MIT License",
-          "Programming Language :: Python :: 2.7",
-          "Programming Language :: Python :: 3.6",
-          "Programming Language :: Python :: 3.7",
-          "Framework :: AiiDA",
-          "Development Status :: 5 - Production/Stable"
-        ]
-      },
-      "aiida_version": ">=1.1.0,<3",
-      "entry_points": {
-        "aiida.calculations": {
-          "ddec": "aiida_ddec.calculations:DdecCalculation"
-        },
-        "aiida.parsers": {
-          "ddec": "aiida_ddec.parsers:DdecParser"
-        },
-        "aiida.workflows": {
-          "ddec.cp2k_ddec": "aiida_ddec.workchains:Cp2kDdecWorkChain"
-        }
-      },
-      "commits_count": 9,
-      "development_status": "stable",
-      "summaryinfo": [
-        {
-          "colorclass": "blue",
-          "text": "Calculations",
-          "count": 1
-        },
-        {
-          "colorclass": "brown",
-          "text": "Parsers",
-          "count": 1
-        },
-        {
-          "colorclass": "green",
-          "text": "Workflows",
-          "count": 1
-        }
-      ],
+      "metadata": {},
+      "aiida_version": null,
+      "entry_points": {},
+      "commits_count": 13,
+      "development_status": "planning",
+      "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/yakutovicha/aiida-ddec"
     },
     "aiida-defects": {
@@ -3752,7 +3713,7 @@
           "raspa.base": "aiida_raspa.workchains:RaspaBaseWorkChain"
         }
       },
-      "commits_count": 2,
+      "commits_count": 3,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -4925,39 +4886,39 @@
       "development_status": "stable",
       "entry_point_prefix": "zeopp",
       "pip_url": "aiida-zeopp",
+      "plugin_info": "https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json",
       "name": "aiida-zeopp",
       "package_name": "aiida_zeopp",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2021-04-26",
+        "release_date": "2023-08-27",
         "description": "AiiDA plugin for zeo++",
-        "author": "Leopold Talirz",
-        "author_email": "leopold.talirz@epfl.ch",
-        "license": "Creative Commons",
-        "home_page": "https://github.com/ltalirz/aiida-zeopp",
+        "author_email": "Leopold Talirz <leopold.talirz@epfl.ch>, Miriam Pougin <miriam.pougin@epfl.ch>",
         "classifiers": [
+          "Development Status :: 5 - Production/Stable",
           "Framework :: AiiDA",
-          "Programming Language :: Python"
+          "License :: OSI Approved :: MIT License",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9"
         ],
-        "version": "1.1.2"
+        "version": "2.0.0"
       },
-      "aiida_version": null,
+      "aiida_version": ">=2.3,<3.0",
       "entry_points": {
         "aiida.calculations": {
           "zeopp.network": "aiida_zeopp.calculations.network:NetworkCalculation"
         },
-        "aiida.parsers": {
-          "zeopp.network": "aiida_zeopp.parsers.network:NetworkParser"
-        },
         "aiida.data": {
           "zeopp.parameters": "aiida_zeopp.data.parameters:NetworkParameters"
         },
-        "console_scripts": {
-          "zeopp-submit": "aiida_zeopp.console_scripts.data_cli:cli"
-        },
-        "aiida.workflows": {}
+        "aiida.parsers": {
+          "zeopp.network": "aiida_zeopp.parsers.network:NetworkParser"
+        }
       },
-      "commits_count": 0,
+      "commits_count": 4,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -4973,11 +4934,6 @@
           "colorclass": "red",
           "text": "Data",
           "count": 1
-        },
-        {
-          "colorclass": "purple",
-          "text": "Console scripts",
-          "count": 1
         }
       ],
       "pip_install_cmd": "pip install aiida-zeopp"
@@ -4987,14 +4943,14 @@
     {
       "name": "Calculations",
       "colorclass": "blue",
-      "num_entries": 54,
-      "total_num": 132
+      "num_entries": 53,
+      "total_num": 131
     },
     {
       "name": "Parsers",
       "colorclass": "brown",
-      "num_entries": 55,
-      "total_num": 110
+      "num_entries": 54,
+      "total_num": 109
     },
     {
       "name": "Data",
@@ -5005,14 +4961,14 @@
     {
       "name": "Workflows",
       "colorclass": "green",
-      "num_entries": 40,
-      "total_num": 136
+      "num_entries": 39,
+      "total_num": 135
     },
     {
       "name": "Console scripts",
       "colorclass": "purple",
-      "num_entries": 16,
-      "total_num": 27
+      "num_entries": 15,
+      "total_num": 26
     },
     {
       "name": "Other",
