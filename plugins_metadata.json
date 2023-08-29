@@ -502,7 +502,7 @@
           "castep.mock": "aiida_castep.cmdline.mock_castep:mock_castep"
         }
       },
-      "commits_count": 9,
+      "commits_count": 6,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -1321,7 +1321,7 @@
           "potcar": "aiida_cusp.cli.potcar_cmd:potcar"
         }
       },
-      "commits_count": 53,
+      "commits_count": 49,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -2217,7 +2217,7 @@
           "gpx": "aiida_grouppathx.cli:grouppathx_cli"
         }
       },
-      "commits_count": 7,
+      "commits_count": 3,
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -4434,7 +4434,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 109,
+      "commits_count": 108,
       "development_status": "stable",
       "summaryinfo": [
         {
