@@ -2148,7 +2148,7 @@
           "gromacs.grompp": "aiida_gromacs.calculations.grompp:GromppCalculation",
           "gromacs.mdrun": "aiida_gromacs.calculations.mdrun:MdrunCalculation",
           "gromacs.solvate": "aiida_gromacs.calculations.solvate:SolvateCalculation",
-          "general-MD": "aiida_gromacs.calculations.generalMD:GeneralCalculation"
+          "genericMD": "aiida_gromacs.calculations.genericMD:GenericCalculation"
         },
         "aiida.parsers": {
           "gromacs.pdb2gmx": "aiida_gromacs.parsers.pdb2gmx:Pdb2gmxParser",
@@ -2157,13 +2157,13 @@
           "gromacs.grompp": "aiida_gromacs.parsers.grompp:GromppParser",
           "gromacs.mdrun": "aiida_gromacs.parsers.mdrun:MdrunParser",
           "gromacs.solvate": "aiida_gromacs.parsers.solvate:SolvateParser",
-          "general-MD": "aiida_gromacs.parsers.generalMD:GeneralParser"
+          "genericMD": "aiida_gromacs.parsers.genericMD:GenericParser"
         },
         "aiida.workflows": {
           "gromacs.setup": "aiida_gromacs.workflows.simsetup:SetupWorkChain"
         }
       },
-      "commits_count": 116,
+      "commits_count": 118,
       "development_status": "alpha",
       "summaryinfo": [
         {
