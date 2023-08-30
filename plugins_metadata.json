@@ -27,7 +27,7 @@
           "qecpworkchain.cp": "aiida_QECpWorkChain.workflow:CpWorkChain"
         }
       },
-      "commits_count": 5,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -74,7 +74,7 @@
           "abinit.base": "aiida_abinit.workflows.base:AbinitBaseWorkChain"
         }
       },
-      "commits_count": 12,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -197,7 +197,7 @@
           "elastic": "aiida_alloy.workflows.ElasticWorkChain:ElasticWorkChain"
         }
       },
-      "commits_count": 1,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -248,7 +248,7 @@
           "ase.gpaw.base": "aiida_ase.workflows.base:GpawBaseWorkChain"
         }
       },
-      "commits_count": 7,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -291,7 +291,7 @@
           "autocas": "aiida_autocas.parsers:AutoCASParser"
         }
       },
-      "commits_count": 11,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -349,7 +349,7 @@
           "bands_inspect.plot": "aiida_bands_inspect.parsers.plot:PlotParser"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -411,7 +411,7 @@
           "bigdft.relax": "aiida_bigdft.workflows.relax:BigDFTRelaxWorkChain"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -565,7 +565,7 @@
           "catmap": "aiida_catmap.parsers.catmap:CatMAPParser"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -616,7 +616,7 @@
           "catmat.vasp_multistage_ddec": "aiida_catmat.workchains:VaspMultiStageDdecWorkChain"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "brown",
@@ -673,7 +673,7 @@
           "ce": "aiida_ce.cli:data_cli"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -738,7 +738,7 @@
           "CHAMP": "aiida_champ.cli:data_cli"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -816,7 +816,7 @@
           "aiida-codtools": "aiida_codtools.cli:cmd_root"
         }
       },
-      "commits_count": 4,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -993,7 +993,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 335,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -1064,7 +1064,7 @@
           "cp2k.base": "aiida_cp2k.workchains:Cp2kBaseWorkChain"
         }
       },
-      "commits_count": 22,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -1137,7 +1137,7 @@
           "crystal_dft": "aiida_crystal_dft.cli.basis:basis_set"
         }
       },
-      "commits_count": 18,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -1236,7 +1236,7 @@
           "mock_properties17": "aiida_crystal17.tests.mock_properties17:main"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -1321,7 +1321,7 @@
           "potcar": "aiida_cusp.cli.potcar_cmd:potcar"
         }
       },
-      "commits_count": 49,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -1386,7 +1386,7 @@
           "dataframe.frame": "aiida_dataframe.data.dataframe:PandasFrameData"
         }
       },
-      "commits_count": 13,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -1412,7 +1412,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 13,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/yakutovicha/aiida-ddec"
@@ -1454,7 +1454,7 @@
           "defects.formation_energy.siesta": "aiida_defects.formation_energy.formation_energy_siesta:FormatonEnergyWorkchainSiesta"
         }
       },
-      "commits_count": 10,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -1506,7 +1506,7 @@
           "diff": "aiida_diff.cli:data_cli"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -1559,7 +1559,7 @@
           "donothing.donothing": "aiida_donothing.parsers.donothing:DoNothingParser"
         }
       },
-      "commits_count": 1,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -1584,7 +1584,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -1599,7 +1599,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/environ-developers/aiida-environ"
@@ -1613,7 +1613,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -1627,7 +1627,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -1686,7 +1686,7 @@
           "aiida-firecrest-cli": "aiida_firecrest.cli:main"
         }
       },
-      "commits_count": 19,
+      "commits_count": -1,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -1738,7 +1738,7 @@
           "arlaunch": "aiida_fireworks_scheduler.scripts.arlaunch_run:arlaunch"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "purple",
@@ -1822,7 +1822,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 202,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -1884,7 +1884,7 @@
           "flexpart.multi_dates": "aiida_flexpart.workflows.multi_dates_workflow:FlexpartMultipleDatesWorkflow"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -1949,7 +1949,7 @@
           "gaussian.cubes": "aiida_gaussian.workchains:GaussianCubesWorkChain"
         }
       },
-      "commits_count": 22,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -2016,7 +2016,7 @@
           "gaussian.pseudo": "aiida_gaussian_datatypes.groups:PseudopotentialGroup"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -2061,7 +2061,7 @@
           "gollum.parser": "aiida_gollum.parsers.gollum:GollumParser"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -2105,7 +2105,7 @@
       },
       "aiida_version": ">=1.0.0b6,<2.0.0",
       "entry_points": {},
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "alpha",
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-graphql"
@@ -2163,7 +2163,7 @@
           "gromacs.setup": "aiida_gromacs.workflows.simsetup:SetupWorkChain"
         }
       },
-      "commits_count": 118,
+      "commits_count": -1,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -2217,7 +2217,7 @@
           "gpx": "aiida_grouppathx.cli:grouppathx_cli"
         }
       },
-      "commits_count": 3,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "orange",
