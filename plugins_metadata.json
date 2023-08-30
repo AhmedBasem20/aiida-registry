@@ -1949,7 +1949,7 @@
           "gaussian.cubes": "aiida_gaussian.workchains:GaussianCubesWorkChain"
         }
       },
-      "commits_count": 20,
+      "commits_count": 22,
       "development_status": "stable",
       "summaryinfo": [
         {
