@@ -76,13 +76,16 @@ function Details({pluginKey}) {
       </div>
 
       <h3>Registry checks</h3>
-      {value.warnings ? (
+      {value.warnings || value.errors ? (
         <>
-        {value.warnings.map((warning) => (
-          <Alert severity="warning">{warning}</Alert>
-        ))}
+          {value.warnings.map((warning) => (
+            <Alert severity="warning">{warning}</Alert>
+          ))}
+          {value.errors.map((error) => (
+            <Alert severity="error">{error}</Alert>
+          ))}
         </>
-      ):(
+      ) : (
         <Alert severity="success">All checks passed!</Alert>
       )}
 

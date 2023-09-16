@@ -10,6 +10,8 @@ import os
 import sys
 from dataclasses import asdict, dataclass
 
+from aiida_registry.fetch_metadata import add_registry_checks
+
 from . import PLUGINS_METADATA, REPORTER
 
 # Where to mount the workdir inside the Docker container
@@ -72,7 +74,7 @@ def handle_error(process_result, message):
 
     if process_result.exit_code != 0:
         error_message = process_result.output.decode("utf8")
-        REPORTER.warn(error_message)
+        REPORTER.warn(f"{message}\n{error_message}")
         raise ValueError(f"{message}\n{error_message}")
 
     return error_message
@@ -181,16 +183,6 @@ def filter_entry_points(process_metadata, entrypoints):
     return filtered_metadata
 
 
-def add_warnings(metadata):
-    """Add fetch warnings to the data object."""
-    plugins_warnings = REPORTER.plugins_warnings
-
-    for name, warnings in plugins_warnings.items():
-        metadata["plugins"][name]["warnings"] = warnings
-
-    return metadata
-
-
 def test_install_all(container_image):
     with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
         data = json.load(handle)
@@ -231,7 +223,7 @@ def test_install_all(container_image):
             except KeyError:
                 continue
 
-        data = add_warnings(data)
+    data = add_registry_checks(data, errors=True)
 
     print("Dumping plugins.json")
     with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
