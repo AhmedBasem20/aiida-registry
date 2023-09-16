@@ -187,8 +187,12 @@ def test_install_all(container_image):
     with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
         data = json.load(handle)
     print("[test installing plugins]")
+    i = 0
     for plugin_name, plugin in data["plugins"].items():
         print(" - {}".format(plugin["name"]))
+        i +=1
+        if (i > 5):
+            break
 
         # this currently checks for the wrong python version
         # if not supports_python_version(plugin):

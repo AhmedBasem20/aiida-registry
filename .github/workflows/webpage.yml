@@ -10,6 +10,7 @@ on:
   push:
     branches:
     - master
+    - display-warnings
 
 # https://docs.github.com/en/actions/using-jobs/using-concurrency
 concurrency:
@@ -19,7 +20,7 @@ concurrency:
 
 jobs:
   webpage:
-    if: github.repository == 'aiidateam/aiida-registry'
+    if: github.repository == 'AhmedBasem20/aiida-registry'
 
     runs-on: ubuntu-latest
     env:
