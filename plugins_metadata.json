@@ -11,7 +11,7 @@
       "name": "aiida-core",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2023-06-23",
+        "release_date": "2023-11-15",
         "description": "AiiDA is a workflow manager for computational science with a strong focus on provenance, performance and extensibility.",
         "author_email": "The AiiDA team <developers@aiida.net>",
         "classifiers": [
@@ -26,9 +26,9 @@
           "Programming Language :: Python :: 3.9",
           "Topic :: Scientific/Engineering"
         ],
-        "version": "2.4.0"
+        "version": "2.4.1"
       },
-      "aiida_version": "==2.4.0",
+      "aiida_version": "==2.4.1",
       "entry_points": {
         "aiida.calculations": {
           "core.arithmetic.add": {
@@ -705,7 +705,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 310,
+      "commits_count": 309,
       "errors": [],
       "warnings": [
         "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
