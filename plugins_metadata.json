@@ -11,7 +11,7 @@
       "name": "aiida-core",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2023-11-30",
+        "release_date": "2023-12-20",
         "description": "AiiDA is a workflow manager for computational science with a strong focus on provenance, performance and extensibility.",
         "author_email": "The AiiDA team <developers@aiida.net>",
         "classifiers": [
@@ -23,12 +23,13 @@
           "Programming Language :: Python",
           "Programming Language :: Python :: 3.10",
           "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
           "Programming Language :: Python :: 3.9",
           "Topic :: Scientific/Engineering"
         ],
-        "version": "2.4.2"
+        "version": "2.5.0"
       },
-      "aiida_version": "==2.4.2",
+      "aiida_version": "==2.5.0",
       "entry_points": {
         "aiida.calculations": {
           "core.arithmetic.add": {
@@ -551,6 +552,7 @@
         },
         "aiida.storage": {
           "core.psql_dos": "aiida.storage.psql_dos.backend:PsqlDosBackend",
+          "core.sqlite_dos": "aiida.storage.sqlite_dos.backend:SqliteDosStorage",
           "core.sqlite_temp": "aiida.storage.sqlite_temp.backend:SqliteTempBackend",
           "core.sqlite_zip": "aiida.storage.sqlite_zip.backend:SqliteZipBackend"
         },
@@ -705,7 +707,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 300,
+      "commits_count": 302,
       "errors": [],
       "warnings": [
         "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
@@ -739,7 +741,7 @@
         {
           "colorclass": "orange",
           "text": "Other (Calculations importers, Calculations monitors, Cmdline computer configure, ...)",
-          "count": 47
+          "count": 48
         }
       ],
       "pip_install_cmd": "pip install aiida-core",
@@ -782,7 +784,7 @@
       "tooltip": "Calculations importers, Calculations monitors, Cmdline computer configure, ...",
       "colorclass": "orange",
       "num_entries": 1,
-      "total_num": 47
+      "total_num": 48
     }
   ],
   "status_dict": {
