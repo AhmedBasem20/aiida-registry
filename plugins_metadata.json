@@ -11,7 +11,7 @@
       "name": "aiida-core",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2024-06-06",
+        "release_date": "2024-07-01",
         "description": "AiiDA is a workflow manager for computational science with a strong focus on provenance, performance and extensibility.",
         "author_email": "The AiiDA team <developers@aiida.net>",
         "classifiers": [
@@ -27,10 +27,13 @@
           "Programming Language :: Python :: 3.9",
           "Topic :: Scientific/Engineering"
         ],
-        "version": "2.5.2"
+        "version": "2.6.1"
       },
-      "aiida_version": "==2.5.2",
+      "aiida_version": "==2.6.1",
       "entry_points": {
+        "aiida.brokers": {
+          "core.rabbitmq": "aiida.brokers.rabbitmq.broker:RabbitmqBroker"
+        },
         "aiida.calculations": {
           "core.arithmetic.add": {
             "description": [
@@ -707,7 +710,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 327,
+      "commits_count": 333,
       "errors": [],
       "warnings": [
         "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
@@ -740,8 +743,8 @@
         },
         {
           "colorclass": "orange",
-          "text": "Other (Calculations importers, Calculations monitors, Cmdline computer configure, ...)",
-          "count": 48
+          "text": "Other (Brokers, Calculations importers, Calculations monitors, ...)",
+          "count": 49
         }
       ],
       "pip_install_cmd": "pip install aiida-core",
@@ -781,10 +784,10 @@
     },
     {
       "name": "Other",
-      "tooltip": "Calculations importers, Calculations monitors, Cmdline computer configure, ...",
+      "tooltip": "Brokers, Calculations importers, Calculations monitors, ...",
       "colorclass": "orange",
       "num_entries": 1,
-      "total_num": 48
+      "total_num": 49
     }
   ],
   "status_dict": {
