@@ -11,7 +11,7 @@
       "name": "aiida-core",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2024-07-01",
+        "release_date": "2024-08-07",
         "description": "AiiDA is a workflow manager for computational science with a strong focus on provenance, performance and extensibility.",
         "author_email": "The AiiDA team <developers@aiida.net>",
         "classifiers": [
@@ -27,9 +27,9 @@
           "Programming Language :: Python :: 3.9",
           "Topic :: Scientific/Engineering"
         ],
-        "version": "2.6.1"
+        "version": "2.6.2"
       },
-      "aiida_version": "==2.6.1",
+      "aiida_version": "==2.6.2",
       "entry_points": {
         "aiida.brokers": {
           "core.rabbitmq": "aiida.brokers.rabbitmq.broker:RabbitmqBroker"
@@ -710,7 +710,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 358,
+      "commits_count": 359,
       "errors": [],
       "warnings": [
         "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
