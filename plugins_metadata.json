@@ -414,7 +414,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 160,
+      "commits_count": 161,
       "errors": [],
       "warnings": [
         "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
