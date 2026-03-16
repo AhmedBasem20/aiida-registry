@@ -11,7 +11,7 @@
       "name": "aiida-core",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2026-01-23",
+        "release_date": "2026-03-16",
         "description": "AiiDA is a workflow manager for computational science with a strong focus on provenance, performance and extensibility.",
         "author_email": "The AiiDA team <developers@aiida.net>",
         "classifiers": [
@@ -28,9 +28,9 @@
           "Programming Language :: Python :: 3.9",
           "Topic :: Scientific/Engineering"
         ],
-        "version": "2.7.3"
+        "version": "2.8.0"
       },
-      "aiida_version": "==2.7.3",
+      "aiida_version": "==2.8.0",
       "entry_points": {
         "aiida.brokers": {
           "core.rabbitmq": "aiida.brokers.rabbitmq.broker:RabbitmqBroker"
@@ -160,7 +160,8 @@
           },
           "core.stash": "aiida.calculations.stash:StashCalculation",
           "core.templatereplacer": "aiida.calculations.templatereplacer:TemplatereplacerCalculation",
-          "core.transfer": "aiida.calculations.transfer:TransferCalculation"
+          "core.transfer": "aiida.calculations.transfer:TransferCalculation",
+          "core.unstash": "aiida.calculations.unstash:UnstashCalculation"
         },
         "aiida.calculations.importers": {
           "core.arithmetic.add": "aiida.calculations.importers.arithmetic.add:ArithmeticAddCalculationImporter"
@@ -211,6 +212,7 @@
           "core.remote": "aiida.orm.nodes.data.remote.base:RemoteData",
           "core.remote.stash": "aiida.orm.nodes.data.remote.stash.base:RemoteStashData",
           "core.remote.stash.compress": "aiida.orm.nodes.data.remote.stash.compress:RemoteStashCompressedData",
+          "core.remote.stash.custom": "aiida.orm.nodes.data.remote.stash.custom:RemoteStashCustomData",
           "core.remote.stash.folder": "aiida.orm.nodes.data.remote.stash.folder:RemoteStashFolderData",
           "core.singlefile": "aiida.orm.nodes.data.singlefile:SinglefileData",
           "core.str": "aiida.orm.nodes.data.str:Str",
@@ -414,7 +416,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 229,
+      "commits_count": 230,
       "errors": [],
       "warnings": [
         "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
@@ -423,7 +425,7 @@
         {
           "colorclass": "blue",
           "text": "Calculations",
-          "count": 4
+          "count": 5
         },
         {
           "colorclass": "brown",
@@ -433,7 +435,7 @@
         {
           "colorclass": "red",
           "text": "Data",
-          "count": 31
+          "count": 32
         },
         {
           "colorclass": "green",
@@ -460,7 +462,7 @@
       "name": "Calculations",
       "colorclass": "blue",
       "num_entries": 1,
-      "total_num": 4
+      "total_num": 5
     },
     {
       "name": "Parsers",
@@ -472,7 +474,7 @@
       "name": "Data",
       "colorclass": "red",
       "num_entries": 1,
-      "total_num": 31
+      "total_num": 32
     },
     {
       "name": "Workflows",
