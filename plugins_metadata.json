@@ -419,7 +419,8 @@
       "commits_count": 269,
       "errors": [],
       "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
+        "Unable to reach documentation URL: https://aiida-core.readthedocs.io/"
       ],
       "summaryinfo": [
         {
