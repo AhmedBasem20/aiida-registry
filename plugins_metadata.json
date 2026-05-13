@@ -416,11 +416,10 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 270,
+      "commits_count": 271,
       "errors": [],
       "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
-        "Unable to reach documentation URL: https://aiida-core.readthedocs.io/"
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
       ],
       "summaryinfo": [
         {
