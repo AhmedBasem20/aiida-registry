@@ -11,7 +11,7 @@
       "name": "aiida-core",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2026-07-25",
+        "release_date": "2026-08-06",
         "description": "AiiDA is a workflow manager for computational science with a strong focus on provenance, performance and extensibility.",
         "author_email": "The AiiDA team <developers@aiida.net>",
         "classifiers": [
@@ -25,15 +25,16 @@
           "Programming Language :: Python :: 3.11",
           "Programming Language :: Python :: 3.12",
           "Programming Language :: Python :: 3.13",
-          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.14",
           "Topic :: Scientific/Engineering"
         ],
-        "version": "2.8.1"
+        "version": "2.9.0"
       },
-      "aiida_version": "==2.8.1",
+      "aiida_version": "==2.9.0",
       "entry_points": {
         "aiida.brokers": {
-          "core.rabbitmq": "aiida.brokers.rabbitmq.broker:RabbitmqBroker"
+          "core.rabbitmq": "aiida.brokers.rabbitmq.broker:RabbitmqBroker",
+          "core.zeromq": "aiida.brokers.zeromq.broker:ZeromqBroker"
         },
         "aiida.calculations": {
           "core.arithmetic.add": {
@@ -281,6 +282,7 @@
           "core.pcod": "aiida.tools.dbimporters.plugins.pcod:PcodDbImporter",
           "core.tcod": "aiida.tools.dbimporters.plugins.tcod:TcodDbImporter"
         },
+        "aiida.tools.workflows": {},
         "aiida.transports": {
           "core.local": "aiida.transports.plugins.local:LocalTransport",
           "core.ssh": "aiida.transports.plugins.ssh:SshTransport",
@@ -416,7 +418,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 378,
+      "commits_count": 385,
       "errors": [],
       "warnings": [
         "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
@@ -450,7 +452,7 @@
         {
           "colorclass": "orange",
           "text": "Other (Brokers, Calculations importers, Calculations monitors, ...)",
-          "count": 59
+          "count": 60
         }
       ],
       "pip_install_cmd": "pip install aiida-core",
@@ -493,7 +495,7 @@
       "tooltip": "Brokers, Calculations importers, Calculations monitors, ...",
       "colorclass": "orange",
       "num_entries": 1,
-      "total_num": 59
+      "total_num": 60
     }
   ],
   "status_dict": {
